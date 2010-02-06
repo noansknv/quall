@@ -1,0 +1,10 @@
+<?xml version="1.0">
+<world>
+<spawn x  =  "0.1" y = "0.2" z = "0.0" />
+<cube x1="1" y1="2" z1="1" x2="1" y2="2" z2="1">
+  <texture>green.png</texture>
+  <material>solid</material>
+  <weight>0</weight>
+</cube>
+<spawn x="0.2" y="0.4" z="0.8" />
+</world>
