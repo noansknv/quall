@@ -44,5 +44,3 @@ Linker : General : Output File                    = $(OutDir)\$(ProjectName).exe
 Linker : General : Additional Library Directories = $(OGRE_HOME)\lib;C:\bullet-2.75\out\debug8\libs
 
 Linker : Input : Additional Dependencies          += OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib libbulletcollision_d.lib libbulletdynamics_d.lib libbulletmath_d.lib libbulletopenglsupport_d.lib
-
-$(SolutionDir)$(ConfigurationName)
