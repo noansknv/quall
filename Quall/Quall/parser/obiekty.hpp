@@ -31,6 +31,7 @@ class World
 {
 public:
 	World() { };
+	Point size;
     vector<Cube> cubes;
     vector<Spawn> spawnPoints;
 	void addSpawn(Spawn s) { };
