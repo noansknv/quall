@@ -277,6 +277,50 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Parser"
+			>
+			<File
+				RelativePath=".\Parser\obiekty.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Parser\parser.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Parser\tinystr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Parser\tinyxml.h"
+				>
+			</File>
+			<Filter
+				Name="impl"
+				>
+				<File
+					RelativePath=".\Parser\parser.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Parser\tinystr.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Parser\tinyxml.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Parser\tinyxmlerror.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Parser\tinyxmlparser.cpp"
+					>
+				</File>
+			</Filter>
+		</Filter>
 		<File
 			RelativePath=".\Application.hpp"
 			>
