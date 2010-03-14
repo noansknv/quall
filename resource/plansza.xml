@@ -1,4 +1,4 @@
-<?xml version="1.0">
+<?xml version="1.0" ?>
 <world x="300.0" y="300.0" z="50.0">
   <spawn x="5.0" y = "5.0" z ="5.0" team="red"/>
   <!-- promien kulki - 5, srodek kulki sie znajduje w odleglosci 5 od scian.-->
@@ -59,11 +59,6 @@
     <material>solid</material>
     <weight>0</weight>
   </cube>
-  <cube x1="80.0" y1="50.0" z1="0.0" x2="110.0" y2="50" z2="50.0">
-    <texture>wall.png</texture>
-    <material>solid</material>
-    <weight>0</weight>
-  </cube>
   <!--góra-->
   <cube x1="50.0" y1="250.0" z1="0.0" x2="80.0" y2="250" z2="50.0">
     <texture>wall.png</texture>
@@ -75,7 +70,49 @@
     <material>solid</material>
     <weight>0</weight>
   </cube>
-  <cube x1="80.0" y1="250.0" z1="0.0" x2="110.0" y2="250" z2="50.0">
+  <!--mniejsze sciany-->
+  <!--pionowe-->
+  <!--lewa-->
+  <cube x1="100.0" y1="100.0" z1="0.0" x2="100.0" y2="140" z2="50.0">
+    <texture>wall.png</texture>
+    <material>solid</material>
+    <weight>0</weight>
+  </cube>
+  <cube x1="100.0" y1="160.0" z1="0.0" x2="100.0" y2="200" z2="50.0">
+    <texture>wall.png</texture>
+    <material>solid</material>
+    <weight>0</weight>
+  </cube>
+  <!--prawa-->
+  <cube x1="200.0" y1="100.0" z1="0.0" x2="200.0" y2="140" z2="50.0">
+    <texture>wall.png</texture>
+    <material>solid</material>
+    <weight>0</weight>
+  </cube>
+  <cube x1="200.0" y1="160.0" z1="0.0" x2="200.0" y2="200" z2="50.0">
+    <texture>wall.png</texture>
+    <material>solid</material>
+    <weight>0</weight>
+  </cube>
+  <!--poziome-->
+  <!--dolna-->
+  <cube x1="100.0" y1="100.0" z1="0.0" x2="140.0" y2="100" z2="50.0">
+    <texture>wall.png</texture>
+    <material>solid</material>
+    <weight>0</weight>
+  </cube>
+  <cube x1="160.0" y1="100.0" z1="0.0" x2="200.0" y2="100" z2="50.0">
+    <texture>wall.png</texture>
+    <material>solid</material>
+    <weight>0</weight>
+  </cube>
+  <!--górna-->
+  <cube x1="100.0" y1="200.0" z1="0.0" x2="140.0" y2="200" z2="50.0">
+    <texture>wall.png</texture>
+    <material>solid</material>
+    <weight>0</weight>
+  </cube>
+  <cube x1="160.0" y1="200.0" z1="0.0" x2="200.0" y2="200" z2="50.0">
     <texture>wall.png</texture>
     <material>solid</material>
     <weight>0</weight>
