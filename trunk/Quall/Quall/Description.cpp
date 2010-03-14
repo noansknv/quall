@@ -6,6 +6,44 @@
 Description::Description(OgreRootPtr o, OgreRenderWindowPtr w) : InitWorld(o, w)
 {
 }
+// daje nam cube'a ladnego, trzeba updatenac troche tylko :)
+Ogre::ManualObject* createCubeMesh(Ogre::String name, Ogre::String matName) {
+
+	Ogre::ManualObject* cube = new Ogre::ManualObject(name);
+   cube->begin(matName);
+   
+   cube->position(0.5,-0.5,1.0);cube->normal(0.408248,-0.816497,0.408248);cube->textureCoord(1,0);
+   cube->position(-0.5,-0.5,0.0);cube->normal(-0.408248,-0.816497,-0.408248);cube->textureCoord(0,1);
+   cube->position(0.5,-0.5,0.0);cube->normal(0.666667,-0.333333,-0.666667);cube->textureCoord(1,1);
+   cube->position(-0.5,-0.5,1.0);cube->normal(-0.666667,-0.333333,0.666667);cube->textureCoord(0,0);
+   cube->position(0.5,0.5,1.0);cube->normal(0.666667,0.333333,0.666667);cube->textureCoord(1,0);
+   cube->position(-0.5,-0.5,1.0);cube->normal(-0.666667,-0.333333,0.666667);cube->textureCoord(0,1);
+   cube->position(0.5,-0.5,1.0);cube->normal(0.408248,-0.816497,0.408248);cube->textureCoord(1,1);
+   cube->position(-0.5,0.5,1.0);cube->normal(-0.408248,0.816497,0.408248);cube->textureCoord(0,0);
+   cube->position(-0.5,0.5,0.0);cube->normal(-0.666667,0.333333,-0.666667);cube->textureCoord(0,1);
+   cube->position(-0.5,-0.5,0.0);cube->normal(-0.408248,-0.816497,-0.408248);cube->textureCoord(1,1);
+   cube->position(-0.5,-0.5,1.0);cube->normal(-0.666667,-0.333333,0.666667);cube->textureCoord(1,0);
+   cube->position(0.5,-0.5,0.0);cube->normal(0.666667,-0.333333,-0.666667);cube->textureCoord(0,1);
+   cube->position(0.5,0.5,0.0);cube->normal(0.408248,0.816497,-0.408248);cube->textureCoord(1,1);
+   cube->position(0.5,-0.5,1.0);cube->normal(0.408248,-0.816497,0.408248);cube->textureCoord(0,0);
+   cube->position(0.5,-0.5,0.0);cube->normal(0.666667,-0.333333,-0.666667);cube->textureCoord(1,0);
+   cube->position(-0.5,-0.5,0.0);cube->normal(-0.408248,-0.816497,-0.408248);cube->textureCoord(0,0);
+   cube->position(-0.5,0.5,1.0);cube->normal(-0.408248,0.816497,0.408248);cube->textureCoord(1,0);
+   cube->position(0.5,0.5,0.0);cube->normal(0.408248,0.816497,-0.408248);cube->textureCoord(0,1);
+   cube->position(-0.5,0.5,0.0);cube->normal(-0.666667,0.333333,-0.666667);cube->textureCoord(1,1);
+   cube->position(0.5,0.5,1.0);cube->normal(0.666667,0.333333,0.666667);cube->textureCoord(0,0);
+
+   cube->triangle(0,1,2);      cube->triangle(3,1,0);
+   cube->triangle(4,5,6);      cube->triangle(4,7,5);
+   cube->triangle(8,9,10);      cube->triangle(10,7,8);
+   cube->triangle(4,11,12);   cube->triangle(4,13,11);
+   cube->triangle(14,8,12);   cube->triangle(14,15,8);
+   cube->triangle(16,17,18);   cube->triangle(16,19,17);
+   cube->end(); 
+
+   return cube;
+
+}
 
 
 /**
@@ -26,7 +64,7 @@ void Description::describeOgreWorld()
   //Ogre::SceneNode *cameraNode = sphereNode->createChildSceneNode("CameraNode", Ogre::Vector3(0, 200, 1000));
   //cameraNode->attachObject(camera.get());
 
-  camera->setPosition(Ogre::Vector3(0,20,20));
+  camera->setPosition(Ogre::Vector3(-20,20,0));
   camera->lookAt(Ogre::Vector3(0,0,0));
   Ogre::Viewport* vp = ogWindow->addViewport(camera.get());
   vp->setBackgroundColour(Ogre::ColourValue(0.5,0.5,0.5));
@@ -39,14 +77,32 @@ void Description::describeOgreWorld()
   sceneManager->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
 
   // plaszczyzna
-  Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
+  /*Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
   Ogre::MeshManager::getSingleton().createPlane("ground",
     Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
     20,20,20,20,true,1,5,5,Ogre::Vector3::UNIT_Z);
 
   Ogre::Entity *ent2 = sceneManager->createEntity("GroundEntity", "ground");
   sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(ent2);
-  ent2->setMaterialName("Gruby/Red");
+  ent2->setMaterialName("Gruby/Red");*/
+
+  // mesh by code
+  
+  Ogre::SceneNode* mNode = sceneManager->getRootSceneNode()->createChildSceneNode();
+  mNode->attachObject(createCubeMesh("Cube", "myMaterial"));
+mNode->setPosition(0,0,10); 
+
+  //Ogre::ManualObject* manual = sceneManager->createManualObject("manual");
+  //manual->begin("BaseWhiteNoLighting", Ogre::RenderOperation::OT_TRIANGLE_FAN);
+
+  //manual->position(0, 0, 0.0);
+  //manual->position(0, 0, 10.0);
+  //manual->position(10.0,  0, 10.0);
+  //manual->position(10, 0, 0);
+  //manual->position(10, 10, 0);
+  //manual->position(10, 10, 10);
+  //manual->end();
+  //sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(manual);
 }
 
 
