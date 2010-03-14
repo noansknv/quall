@@ -23,6 +23,9 @@ public:
 private:
 	Spawn parseSpawn(TiXmlElement* pElem);
 	Cube parseCube(TiXmlElement* pElem);
+    Point parseWorld(TiXmlElement* pElem);
+    Bonus parseBonus(TiXmlElement* pElem);
+    Flag parseFlag(TiXmlElement* pElem);
 
 	TiXmlDocument doc;
 	vector<string> names;
