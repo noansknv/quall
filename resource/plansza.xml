@@ -2,6 +2,7 @@
 <world x="300.0" y="300.0" z="50.0">
   <spawn x="5.0" y = "5.0" z ="5.0" team="red"/>
   <!-- promien kulki - 5, srodek kulki sie znajduje w odleglosci 5 od scian.-->
+  <!-- cube to 2 wierzcholki: front-bottom-left back-top-right-->
   <!--4 rogi spawnow-->
   <spawn x="295.0" y="5.0" z="5.0" team="blue"/>
   <spawn x="295.0" y="295.0" z="5.0" team="blue"/>
