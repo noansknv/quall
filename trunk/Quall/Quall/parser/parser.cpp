@@ -41,8 +41,9 @@ World Parser::getWorld()
 		abort();
 	}
 	
-	World res;
+    World res;
 
+    res.size = parseWorld(pElem);
 	hRoot = TiXmlHandle(pElem);
 	pElem = hRoot.FirstChild().Element();
 
@@ -54,19 +55,129 @@ World Parser::getWorld()
 		{
 			Spawn s;
 			s = parseSpawn(pElem);
-			//res.addSpawn(s);
 			res.spawnPoints.push_back(s);
 		}
 		else if (node.compare("cube") == 0)
 		{
 			Cube c;
 			c = parseCube(pElem);
-			//res.addCupe(c);
 			res.cubes.push_back(c);
 		}
+        else if (node.compare("flag") == 0)
+        {
+            Flag f;
+            f = parseFlag(pElem);
+            res.flags.push_back(f);
+        }
+        else if (node.compare("bonus") == 0)
+        {
+            Bonus b;
+            b = parseBonus(pElem);
+            res.bonuses.push_back(b);
+        }
 		else 
 			cout << "Unknown node in file " << file << endl;
 	}
+
+	return res;
+};
+
+Point Parser::parseWorld(TiXmlElement* pElem) 
+{
+	TiXmlAttribute* pAttrib = pElem->FirstAttribute();
+	Point res;
+
+	int i = 0;
+
+	while(pAttrib) {
+		string a(pAttrib->Name());
+		transform(a.begin(), a.end(), a.begin(), tolower);
+		
+		if (a.compare("x") == 0)
+			res.x = (float)atof(pAttrib->Value());
+		else if (a.compare("y") == 0)
+			res.y = (float)atof(pAttrib->Value());
+		else if (a.compare("z") == 0)
+			res.z = (float)atof(pAttrib->Value());
+		else
+			cout << "Unknown attribute in World" << endl;
+
+		pAttrib = pAttrib->Next();
+		i++;
+	}
+
+	if (i != 3)
+		cout << "Wrong amount of attributes in World" << endl;
+
+    return res;
+}
+
+Bonus Parser::parseBonus(TiXmlElement* pElem) 
+{
+	TiXmlAttribute* pAttrib = pElem->FirstAttribute();
+	Bonus res;
+	Point p;
+
+	int i = 0;
+
+	while(pAttrib) {
+		string a(pAttrib->Name());
+		transform(a.begin(), a.end(), a.begin(), tolower);
+		
+		if (a.compare("x") == 0)
+			p.x = (float)atof(pAttrib->Value());
+		else if (a.compare("y") == 0)
+			p.y = (float)atof(pAttrib->Value());
+		else if (a.compare("z") == 0)
+			p.z = (float)atof(pAttrib->Value());
+        else if (a.compare("type") == 0)
+            res.type = pAttrib->Value();
+		else
+			cout << "Unknown attribute in Flag" << endl;
+
+		pAttrib = pAttrib->Next();
+		i++;
+	}
+
+	if (i != 4)
+		cout << "Wrong amount of attributes in Flag" << endl;
+
+	res.p = p;
+
+	return res;
+};
+	
+Flag Parser::parseFlag(TiXmlElement* pElem) 
+{
+	TiXmlAttribute* pAttrib = pElem->FirstAttribute();
+	Flag res;
+	Point p;
+
+	int i = 0;
+
+	while(pAttrib) {
+		string a(pAttrib->Name());
+		transform(a.begin(), a.end(), a.begin(), tolower);
+		
+		if (a.compare("x") == 0)
+			p.x = (float)atof(pAttrib->Value());
+		else if (a.compare("y") == 0)
+			p.y = (float)atof(pAttrib->Value());
+		else if (a.compare("z") == 0)
+			p.z = (float)atof(pAttrib->Value());
+        else if (a.compare("team") == 0)
+            res.team = pAttrib->Value();
+		else
+			cout << "Unknown attribute in Flag" << endl;
+
+		pAttrib = pAttrib->Next();
+		i++;
+	}
+
+	if (i != 4)
+		cout << "Wrong amount of attributes in Flag" << endl;
+
+	res.p = p;
 
 	return res;
 };
@@ -89,6 +200,8 @@ Spawn Parser::parseSpawn(TiXmlElement* pElem)
 			p.y = (float)atof(pAttrib->Value());
 		else if (a.compare("z") == 0)
 			p.z = (float)atof(pAttrib->Value());
+        else if (a.compare("team") == 0)
+            res.team = pAttrib->Value();
 		else
 			cout << "Unknown attribute in Spawn" << endl;
 
@@ -96,7 +209,7 @@ Spawn Parser::parseSpawn(TiXmlElement* pElem)
 		i++;
 	}
 
-	if (i != 3)
+	if (i != 4)
 		cout << "Wrong amount of attributes in Spawn" << endl;
 
 	res.p = p;
@@ -160,15 +273,19 @@ Cube Parser::parseCube(TiXmlElement* pElem)
 	return res;
 };
 
-/*int main() {
+int main() {
 	int n;
-	Parser p("plansza.xml");
+    Parser p("plansza.xml");
 	World w;
 	p.readFile();
 	w = p.getWorld();
 	cout << w.spawnPoints[0].p.x << " " << w.spawnPoints[0].p.y << " " << w.spawnPoints[0].p.z << endl;
 	cout << w.cubes[0].material << " " << w.cubes[0].p1.x << " " << w.cubes[0].weight << endl;
+    cout << "team spawn pointu: " << w.spawnPoints[0].team << endl;
+    cout << "wspolrzedne worlda: " << w.size.x << " " << w.size.y << " " << w.size.z << endl;
+    cout << "flagi: " << w.flags[0].team << " " << w.flags[0].p.x << " " << w.flags[0].p.y << endl;
+    cout << "bonusy: " << w.bonuses[0].type << endl;
 	cin >> n;
 	return 0;
-}*/
+}
 

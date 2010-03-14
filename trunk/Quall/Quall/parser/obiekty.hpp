@@ -25,6 +25,21 @@ class Spawn
 {
 public:
     Point p;
+    string team;
+};
+
+class Flag
+{
+public:
+    Point p;
+    string team;
+};
+
+class Bonus 
+{
+public:
+    Point p;
+    string type;
 };
 
 class World
@@ -34,7 +49,7 @@ public:
 	Point size;
     vector<Cube> cubes;
     vector<Spawn> spawnPoints;
-	void addSpawn(Spawn s) { };
-	void addCube(Cube s) { };
+    vector<Flag> flags;
+    vector<Bonus> bonuses;
 };
 
