@@ -8,8 +8,8 @@ Description::Description(OgreRootPtr o, OgreRenderWindowPtr w) : InitWorld(o, w)
 }
 
 // daje nam cube'a ladnego, trzeba updatenac troche tylko :)
-Ogre::ManualObject* createCubeMesh(Ogre::Vector3 fbl, Ogre::Vector3 btr, Ogre::String name, Ogre::String matName) {
-
+Ogre::ManualObject* Description::createCubeMesh(Ogre::Vector3 fbl, Ogre::Vector3 btr, Ogre::String name, Ogre::String matName)
+{
   Ogre::ManualObject* cube = new Ogre::ManualObject(name);
   cube->begin(matName);
   //front
@@ -57,6 +57,8 @@ void Description::describeOgreWorld()
   //Ogre::SceneNode *cameraNode = sphereNode->createChildSceneNode("CameraNode", Ogre::Vector3(0, 200, 1000));
   //cameraNode->attachObject(camera.get());
 
+  //Ogre::SceneNode *node = sceneManager->getRootSceneNode()->createChildSceneNode("CamNode", Ogre::Vector3(0, 20, 20));
+  //node->attachObject(camera);
   camera->setPosition(Ogre::Vector3(0, 20, 20));
   camera->lookAt(Ogre::Vector3(0, 0, 0));
   Ogre::Viewport* vp = ogWindow->addViewport(camera.get());
@@ -122,4 +124,5 @@ void Description::describeElements()
 {
   ball.reset(new Ball(ogWorld, btWorld, sceneManager));
   addElement(ball);
+  // tutaj jakos kamere podpinamy do childnode'a kuleczki
 }
