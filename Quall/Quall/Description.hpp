@@ -19,5 +19,13 @@ public:
   void describeBulletWorld();
   void describeElements();
 private:
+  /*
+  * fbl - front bottom left vertex
+  * btr - back top right vertex
+  * name - nazwa mesh'a
+  * matName - nazwa materialu
+  */
+  Ogre::ManualObject* createCubeMesh(Ogre::Vector3 fbl, Ogre::Vector3 btr, Ogre::String name, Ogre::String matName);
+  // po co tutaj ten ball??
   WorldElementPtr ball;
 };
