@@ -47,6 +47,8 @@ private:
   // Zarzadca sceny Ogra.
   OgreSceneManagerPtr sceneManager;
 
+  WorldElementPtr mainCharacter;
+
   // Aktualna kamera. Byc moze tymczasowe rozwiazanie.
   OgreCameraPtr camera;
 };

@@ -26,7 +26,7 @@ class WorldElement
 public:
   // Inline-owy konstruktor, poniewaz plik .cpp jest zbedny.
   WorldElement(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s)
-    : ogWorld(o), btWorld(b), sceneManager(s)
+    : ogWorld(o), btWorld(b), sceneManager(s), direction(Ogre::Vector3::ZERO), move(0.1)
   {
   }
 
@@ -49,8 +49,22 @@ public:
   {
   }
 
+  Ogre::Node* getOgNode() { return node; }
+
 protected:
   OgreRootPtr ogWorld;
   OgreSceneManagerPtr sceneManager;
   BtDiscreteWorldPtr btWorld;
+
+  // Uchwyt kulki w bullecie.
+  btRigidBody* fallRigidBody;
+
+  // Uchwyt kulki w ogrze.
+  Ogre::SceneNode* node;
+
+  // Wspolczynnik predkosci ruchu.
+  Ogre::Real move;
+
+  // Wektor kierunku ruchu.
+  Ogre::Vector3 direction;
 };

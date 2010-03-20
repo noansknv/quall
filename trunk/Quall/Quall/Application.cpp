@@ -2,7 +2,8 @@
 
 
 Application::Application()
-{ 
+{
+	sim = new Simulation();
 }
 
 
@@ -135,7 +136,6 @@ void Application::setupInputSystem()
 */
 void Application::startMainLoop()
 {
-  sim = new Simulation();
   sim->requestStateChange(SIMULATION);
   // Uzywana jest tymczasowa maszyna stanowa.
   while (sim->getCurrentState() != SHUTDOWN)

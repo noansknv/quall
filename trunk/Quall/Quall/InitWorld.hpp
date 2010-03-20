@@ -22,7 +22,7 @@ typedef boost::shared_ptr<InitWorld> InitWorldPtr;
 class InitWorld
 {
 public:
-    InitWorld(OgreRootPtr o, OgreRenderWindowPtr w);
+  InitWorld(OgreRootPtr o, OgreRenderWindowPtr w);
   ~InitWorld();
 
   // Opisuje swiat graficzny. Musi zdefiniowac menadzera sceny oraz kamere.
@@ -38,6 +38,7 @@ public:
   OgreRootPtr getOgWorld() { return ogWorld; }
   OgreRenderWindowPtr getOgWindow() { return ogWindow; }
   OgreSceneManagerPtr getOgSceneManager() { return sceneManager; }
+  WorldElementPtr getMainCharacter() { return mainCharacter; }
   OgreCameraPtr getOgCamera() { return camera; }
   BtDiscreteWorldPtr getBtWorld() { return btWorld; }
   ElementDequePtr getElementsDeque() { return elementsDeque; }
@@ -45,6 +46,7 @@ public:
 protected:
   OgreSceneManagerPtr sceneManager;
   BtDiscreteWorldPtr btWorld;
+  WorldElementPtr mainCharacter;
   OgreCameraPtr camera;
   OgreRootPtr ogWorld;
   OgreRenderWindowPtr ogWindow;

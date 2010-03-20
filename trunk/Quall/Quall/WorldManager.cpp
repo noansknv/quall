@@ -12,6 +12,7 @@ WorldManager::WorldManager(InitWorldPtr worldDescription)
     // opisujemy swiat ogra i zbieramy plony...
     worldDescription->describeOgreWorld();
     sceneManager = worldDescription->getOgSceneManager();
+	mainCharacter = worldDescription->getMainCharacter();
     camera = worldDescription->getOgCamera();
 
     // ...nastepnie opisujemy swiat bullet i rowniez zbieramy plony
