@@ -1,7 +1,7 @@
 #include "ball.hpp"
 
 Ball::Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s)
-: WorldElement(o, b, s), direction(Ogre::Vector3::ZERO), move(0.1)
+: WorldElement(o, b, s)
 {
 }
 
@@ -10,8 +10,8 @@ void Ball::describeOgreElement()
 {
   Ogre::Entity* ent = sceneManager->createEntity("ballmesh", "ball.mesh");
   ent->setCastShadows(true);
-  sceneManager->getRootSceneNode()->createChildSceneNode("ball")->attachObject(ent);
-  node = sceneManager->getRootSceneNode()->getChild("ball");
+  node = sceneManager->getRootSceneNode()->createChildSceneNode("ball");
+  node->attachObject(ent);
 }
 
 
@@ -38,6 +38,7 @@ void Ball::oneStep()
   node->setPosition(node->getPosition().x, trans.getOrigin().getY(), node->getPosition().z);
   // Przesuniecie kulki w poziomie.
   node->translate((direction * move)/* * evt.timeSinceLastFrame*/, Ogre::Node::TS_LOCAL);
+  // co to jest?! :)
   Ogre::WindowEventUtilities::messagePump();
 }
 

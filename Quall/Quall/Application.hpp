@@ -43,7 +43,7 @@ private:
     WorldManagerPtr worldManager;
 
     // Tymczasowe rozwiazanie maszyny stanowej gry.
-    Simulation* sim;
+    Simulation *sim;
     // Uchwyt buforowanego wejscia.
     InputHandlerPtr oisHandler;
 

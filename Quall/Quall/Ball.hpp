@@ -15,16 +15,4 @@ public:
   void oneStep();
   void setDirectionX(Ogre::Real x);
   void setDirectionZ(Ogre::Real z);
-private:
-  // Uchwyt kulki w bullecie.
-  btRigidBody* fallRigidBody;
-
-  // Uchwyt kulki w ogrze.
-  Ogre::Node* node;
-
-  // Wspolczynnik predkosci ruchu.
-  Ogre::Real move;
-
-  // Wektor kierunku ruchu.
-  Ogre::Vector3 direction;
 };

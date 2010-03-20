@@ -122,7 +122,9 @@ void Description::describeBulletWorld() {
 
 void Description::describeElements()
 {
+  WorldElementPtr ball;
   ball.reset(new Ball(ogWorld, btWorld, sceneManager));
   addElement(ball);
-  // tutaj jakos kamere podpinamy do childnode'a kuleczki
+  // ustawiamy kuleczke jako glowna postac gry
+  mainCharacter = ball;
 }
