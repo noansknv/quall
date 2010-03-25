@@ -1,4 +1,5 @@
 #include "Description.hpp"
+#include "parser.hpp"
 
 /*
 * Implementacja konstruktora. Smart.
@@ -48,45 +49,53 @@ void Description::describeOgreWorld()
   sceneManager.reset(ogWorld->createSceneManager(Ogre::ST_GENERIC));
   camera.reset(sceneManager->createCamera("camera"));
   camera->setNearClipDistance(5);
-
-  // testy
-  //Ogre::Entity *sphereEnt = sceneManager->createEntity("Sphere", "sphere.mesh");
-  //Ogre::SceneNode *sphereNode = sceneManager->getRootSceneNode()->createChildSceneNode("SphereNode", Ogre::Vector3(0, 200, 0));
-  //sphereNode->attachObject(sphereEnt);
+  // 4:3
+  camera->setAspectRatio((Ogre::Real)1.333333);
+  Ogre::Viewport* vp = ogWindow->addViewport(camera.get());
+  vp->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
 
   //Ogre::SceneNode *cameraNode = sphereNode->createChildSceneNode("CameraNode", Ogre::Vector3(0, 200, 1000));
   //cameraNode->attachObject(camera.get());
 
-  //Ogre::SceneNode *node = sceneManager->getRootSceneNode()->createChildSceneNode("CamNode", Ogre::Vector3(0, 20, 20));
-  //node->attachObject(camera);
-  camera->setPosition(Ogre::Vector3(0, 20, 20));
-  camera->lookAt(Ogre::Vector3(0, 0, 0));
-  Ogre::Viewport* vp = ogWindow->addViewport(camera.get());
-  vp->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
-
-  // 4:3
-  camera->setAspectRatio((Ogre::Real)1.333333);
-
   // pokazmy kuleczke
   sceneManager->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
   Ogre::Light* l = sceneManager->createLight("MainLight");
-  l->setPosition(20, 80, 50);
+  l->setPosition(40, 20, 0);
   sceneManager->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
 
   // plaszczyzna
-  /*Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
+  Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
   Ogre::MeshManager::getSingleton().createPlane("ground",
     Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
-    20,20,20,20,true,1,5,5,Ogre::Vector3::UNIT_Z);
-
-  Ogre::Entity *ent2 = sceneManager->createEntity("GroundEntity", "ground");
-  sceneManager->getRootSceneNode()->createChildSceneNode()->attachObject(ent2);
-  ent2->setMaterialName("Gruby/Red");*/
+    300, 300, 1, 1, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
+  Ogre::Entity *ent = sceneManager->createEntity("GroundEntity", "ground");
+  Ogre::SceneNode *planeNode = sceneManager->getRootSceneNode()->createChildSceneNode();
+  planeNode->setPosition(150, 0, -150);
+  planeNode->attachObject(ent);
+  //ent2->setMaterialName("Gruby/Red");
 
   // mesh by code
-  Ogre::SceneNode* mNode = sceneManager->getRootSceneNode()->createChildSceneNode();
-  mNode->attachObject(createCubeMesh(Ogre::Vector3(-20, -10, 0), Ogre::Vector3(-10, 0, -10), "Cube", "myMaterial"));
-  mNode->setPosition(0,0,0);
+  //Ogre::SceneNode* mNode = sceneManager->getRootSceneNode()->createChildSceneNode();
+  //mNode->attachObject(createCubeMesh(Ogre::Vector3(-40, 0, 0), Ogre::Vector3(-20, 10, -20), "Cube", "myMaterial"));
+  //mNode = sceneManager->getRootSceneNode()->createChildSceneNode();
+  //mNode->attachObject(createCubeMesh(Ogre::Vector3(-40, 0, 30), Ogre::Vector3(-20, 10, 10), "Cube", "myMaterial"));
+  //mNode = sceneManager->getRootSceneNode()->createChildSceneNode();
+  //mNode->attachObject(createCubeMesh(Ogre::Vector3(20, 0, -10), Ogre::Vector3(30, 10, -30), "Cube", "myMaterial"));
+  //mNode = sceneManager->getRootSceneNode()->createChildSceneNode();
+  //mNode->attachObject(createCubeMesh(Ogre::Vector3(20, 0, 20), Ogre::Vector3(40, 10, 0), "Cube", "myMaterial"));
+  
+  //mNode->setPosition(0,0,0);
+  //mNode = sceneManager->getRootSceneNode()->createChildSceneNode();
+  //Point p1 = w.cubes[0].p1, p2 = w.cubes[0].p2;
+  //mNode->attachObject(createCubeMesh(Ogre::Vector3(p1.x, p1.z, -1 * p1.y), Ogre::Vector3(p2.x, p2.z, -1 * p2.y), "Cube", "wall"));
+  
+  Ogre::SceneNode* mNode;
+  for (int i = 0; i < parserWorld.cubes.size(); ++i)
+  {
+	mNode = sceneManager->getRootSceneNode()->createChildSceneNode();
+    Point p1 = parserWorld.cubes[i].p1, p2 = parserWorld.cubes[i].p2;
+	mNode->attachObject(createCubeMesh(Ogre::Vector3(p1.x, p1.z, -1 * p1.y), Ogre::Vector3(p2.x, p2.z, -1 * p2.y), "Cube" + i, "wall"));
+  }
 }
 
 
@@ -123,7 +132,9 @@ void Description::describeBulletWorld() {
 void Description::describeElements()
 {
   WorldElementPtr ball;
-  ball.reset(new Ball(ogWorld, btWorld, sceneManager));
+  Point p = parserWorld.spawnPoints[0].p;
+  Ogre::Vector3 pos(p.x, p.z, -1 * p.y);
+  ball.reset(new Ball(ogWorld, btWorld, sceneManager, pos));
   addElement(ball);
   // ustawiamy kuleczke jako glowna postac gry
   mainCharacter = ball;

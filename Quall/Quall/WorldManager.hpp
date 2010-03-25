@@ -28,6 +28,8 @@ public:
   void setDirectionX(Ogre::Real x);
   void setDirectionZ(Ogre::Real z);
 
+  OgreCameraPtr getCamera() { return camera; }
+
 private:
   // Uchwyt swiata fizycznego Bulleta.
   BtDiscreteWorldPtr btWorld;
@@ -49,6 +51,6 @@ private:
 
   WorldElementPtr mainCharacter;
 
-  // Aktualna kamera. Byc moze tymczasowe rozwiazanie.
+  // Aktualna kamera.
   OgreCameraPtr camera;
 };

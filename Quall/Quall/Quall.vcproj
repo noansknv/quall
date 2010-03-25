@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\include;$(OGRE_HOME)\include;$(OGRE_HOME)\samples\include;c:\bullet-2.75\src;c:\boost_1_41_0\"
+				AdditionalIncludeDirectories="..\Parser;..\include;$(OGRE_HOME)\include;$(OGRE_HOME)\samples\include;c:\bullet-2.75\src;c:\boost_1_41_0\"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_STLP_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -167,6 +167,10 @@
 		</Configuration>
 	</Configurations>
 	<References>
+		<ProjectReference
+			ReferencedProjectIdentifier="{D37FE1DB-F6E1-46CB-B384-8A9E7D01BAF0}"
+			RelativePathToProject=".\Parser\Parser.vcproj"
+		/>
 	</References>
 	<Files>
 		<Filter
@@ -240,6 +244,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\resource.h"
+					>
+				</File>
+				<File
 					RelativePath=".\WorldManager.cpp"
 					>
 				</File>
@@ -283,6 +291,10 @@
 		</File>
 		<File
 			RelativePath=".\Configuration.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\Quall.rc"
 			>
 		</File>
 		<File

@@ -43,6 +43,9 @@ void  InputHandler::setWindowExtents(int width, int height)
 // MouseListener
 bool InputHandler::mouseMoved(const OIS::MouseEvent &evt)
 {
+  Ogre::Real mRotate = 0.13;
+  worldMgr->getCamera()->getParentSceneNode()->yaw(Ogre::Degree(-mRotate * evt.state.X.rel), Ogre::Node::TS_WORLD);
+  worldMgr->getCamera()->getParentSceneNode()->pitch(Ogre::Degree(-mRotate * evt.state.Y.rel), Ogre::Node::TS_LOCAL);
   return true;
 }
 
