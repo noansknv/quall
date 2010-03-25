@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Quall", "Quall\Quall.vcproj", "{210696E4-AD64-4C44-96D1-8C7A919D9B97}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Parser", "Parser\Parser.vcproj", "{0FF0B2CA-DB19-413D-AD83-9F404366C7EA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Parser", "Parser\Parser.vcproj", "{D37FE1DB-F6E1-46CB-B384-8A9E7D01BAF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,10 @@ Global
 		{210696E4-AD64-4C44-96D1-8C7A919D9B97}.Debug|Win32.Build.0 = Debug|Win32
 		{210696E4-AD64-4C44-96D1-8C7A919D9B97}.Release|Win32.ActiveCfg = Release|Win32
 		{210696E4-AD64-4C44-96D1-8C7A919D9B97}.Release|Win32.Build.0 = Release|Win32
-		{0FF0B2CA-DB19-413D-AD83-9F404366C7EA}.Debug|Win32.ActiveCfg = Debug|Win32
-		{0FF0B2CA-DB19-413D-AD83-9F404366C7EA}.Debug|Win32.Build.0 = Debug|Win32
-		{0FF0B2CA-DB19-413D-AD83-9F404366C7EA}.Release|Win32.ActiveCfg = Release|Win32
-		{0FF0B2CA-DB19-413D-AD83-9F404366C7EA}.Release|Win32.Build.0 = Release|Win32
+		{D37FE1DB-F6E1-46CB-B384-8A9E7D01BAF0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D37FE1DB-F6E1-46CB-B384-8A9E7D01BAF0}.Debug|Win32.Build.0 = Debug|Win32
+		{D37FE1DB-F6E1-46CB-B384-8A9E7D01BAF0}.Release|Win32.ActiveCfg = Release|Win32
+		{D37FE1DB-F6E1-46CB-B384-8A9E7D01BAF0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
