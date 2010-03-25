@@ -10,6 +10,7 @@
 
 #include "Types.hpp"
 #include "WorldElement.hpp"
+#include "obiekty.hpp"
 
 class InitWorld;
 
@@ -33,6 +34,8 @@ public:
 
   // Opisuje wszystkie dynamiczne elementy swiata - dodaje je.
   virtual void describeElements() = 0;
+
+  void attachCamera(OgreCameraPtr cam, Ogre::SceneNode *node);
   
   // Gettery i settery.
   OgreRootPtr getOgWorld() { return ogWorld; }
@@ -50,6 +53,7 @@ protected:
   OgreCameraPtr camera;
   OgreRootPtr ogWorld;
   OgreRenderWindowPtr ogWindow;
+  World parserWorld;
   
   // Lista elementow dynamicznych znajdujacych sie w danym swiecie
   ElementDequePtr elementsDeque;

@@ -11,17 +11,19 @@ WorldManager::WorldManager(InitWorldPtr worldDescription)
 
     // opisujemy swiat ogra i zbieramy plony...
     worldDescription->describeOgreWorld();
-    sceneManager = worldDescription->getOgSceneManager();
-	mainCharacter = worldDescription->getMainCharacter();
-    camera = worldDescription->getOgCamera();
 
-    // ...nastepnie opisujemy swiat bullet i rowniez zbieramy plony
+	// ...nastepnie opisujemy swiat bullet i rowniez zbieramy plony
     worldDescription->describeBulletWorld();
     btWorld = worldDescription->getBtWorld();
 
     // i dodajemy wszystkie elementy do swiata
     worldDescription->describeElements();
     elementsDeque = worldDescription->getElementsDeque();
+
+	sceneManager = worldDescription->getOgSceneManager();
+	mainCharacter = worldDescription->getMainCharacter();
+    camera = worldDescription->getOgCamera();
+	worldDescription->attachCamera(camera, mainCharacter->getOgNode());
 }
 
 
