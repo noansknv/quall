@@ -31,7 +31,7 @@ Debugging : Working Directory                     = $(!OutDir)
 
 Debugging : Environment                           = PATH=%PATH%;%OGRE_HOME%\bin\debug
 
-C/C++ : General : Additional Include Directories  = ..\include;$(OGRE_HOME)\include;$(OGRE_HOME)\samples\include;c:\bullet-2.75\src;c:\boost_1_41_0\
+C/C++ : General : Additional Include Directories  = ..\Parser;..\include;$(OGRE_HOME)\include;$(OGRE_HOME)\samples\include;c:\bullet-2.75\src;c:\boost_1_41_0\
 
 C/C++ : Preprocessor : Preprocessor Definitions   += _STLP_DEBUG 
 
