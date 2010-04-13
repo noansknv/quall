@@ -63,14 +63,17 @@ void Description::describeOgreWorld()
   l->setPosition(40, 20, 0);
   sceneManager->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
 
+  //Examples/GrassFloor
   // plaszczyzna
   Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
   Ogre::MeshManager::getSingleton().createPlane("ground",
     Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
     300, 300, 1, 1, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
   Ogre::Entity *ent = sceneManager->createEntity("GroundEntity", "ground");
-  Ogre::SceneNode *planeNode = sceneManager->getRootSceneNode()->createChildSceneNode();
-  planeNode->setPosition(150, 0, -150);
+  ent->setMaterialName("Examples/GrassFloor");
+  Ogre::SceneNode *planeNode = sceneManager->getRootSceneNode()/*->createChildSceneNode()*/;
+  
+  //planeNode->setPosition(150, 0, -150);
   planeNode->attachObject(ent);
   //ent2->setMaterialName("Gruby/Red");
 
@@ -92,9 +95,15 @@ void Description::describeOgreWorld()
   Ogre::SceneNode* mNode;
   for (int i = 0; i < parserWorld.cubes.size(); ++i)
   {
-	mNode = sceneManager->getRootSceneNode()->createChildSceneNode();
+	mNode = sceneManager->getRootSceneNode()/*->createChildSceneNode()*/;
     Point p1 = parserWorld.cubes[i].p1, p2 = parserWorld.cubes[i].p2;
-	mNode->attachObject(createCubeMesh(Ogre::Vector3(p1.x, p1.z, -1 * p1.y), Ogre::Vector3(p2.x, p2.z, -1 * p2.y), "Cube" + i, "wall"));
+	//Ogre::MeshPtr ptr = createCubeMesh(Ogre::Vector3(p1.x, p1.z, -1 * p1.y), Ogre::Vector3(p2.x, p2.z, -1 * p2.y), "Cube" + i, "wall")->convertToMesh("");
+	//Ogre::Entity *ent = new Ogre::Entity("ble", ptr);
+	char *str = new char[5];
+	sprintf(str, "%d", i);
+	Ogre::String id(str);
+	Ogre::String name = "Cube" + id;
+	mNode->attachObject(createCubeMesh(Ogre::Vector3(p1.x, p1.z, -1 * p1.y), Ogre::Vector3(p2.x, p2.z, -1 * p2.y), name, "Examples/GrassFloor"));
   }
 }
 
