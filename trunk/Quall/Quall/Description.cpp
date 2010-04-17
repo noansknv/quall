@@ -85,7 +85,7 @@ void Description::describeOgreWorld()
   Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
   Ogre::MeshManager::getSingleton().createPlane("ground",
     Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
-    300, 300, 1, 1, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
+	parserWorld.size.x, parserWorld.size.y, 1, 1, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
   Ogre::Entity *ent = sceneManager->createEntity("GroundEntity", "ground");
   ent->setMaterialName("Quall/Floor");
   Ogre::SceneNode *planeNode = sceneManager->getRootSceneNode()->createChildSceneNode();
@@ -97,11 +97,12 @@ void Description::describeOgreWorld()
   for (int i = 0; i < parserWorld.cubes.size(); ++i)
   {
     Point p1 = parserWorld.cubes[i].p1, p2 = parserWorld.cubes[i].p2;
+	Ogre::String wall_material(parserWorld.cubes[i].texture);
 	char *str = new char[5];
 	sprintf(str, "%d", i);
 	Ogre::String id(str);
 	Ogre::String name = "Cube" + id;
-    Ogre::ManualObject *mCube = createCubeMesh(Ogre::Vector3(p1.x, p1.z, -1 * p1.y), Ogre::Vector3(p2.x, p2.z, -1 * p2.y), name, "Quall/Wall");
+    Ogre::ManualObject *mCube = createCubeMesh(Ogre::Vector3(p1.x, p1.z, -1 * p1.y), Ogre::Vector3(p2.x, p2.z, -1 * p2.y), name, wall_material);
 	mCube->convertToMesh(name);
 	Ogre::Entity *ent = sceneManager->createEntity(name, name);
 	mRootNode->attachObject(ent);

@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<world x="375.0" y="375.0" z="50.0">
+<spawn x="50.0" y = "50.0" z ="5.0" team="red"/>
+  <!-- promien kulki - 5, srodek kulki sie znajduje w odleglosci 5 od scian.-->
+  <!-- cube to 2 wierzcholki: front-bottom-left back-top-right-->
+  <!-- ogrodzenie-->
+  <cube x1="0.0" y1="0.0" z1="0.0" x2="25.0" y2="375.0" z2="20.0">
+	<texture>Quall/Wall</texture>
+    <material>solid</material>
+    <weight>0</weight>
+  </cube>  
+
+  <cube x1="50.0" y1="0.0" z1="0.0" x2="75.0" y2="375.0" z2="20.0">
+	<texture>Quall/Bush</texture>
+    <material>solid</material>
+    <weight>0</weight>
+  </cube>
+
+</world>
