@@ -43,6 +43,29 @@ World Parser::getWorld()
 	
 	World res;
 
+	TiXmlAttribute* pAttrib = pElem->FirstAttribute();
+	int i = 0;
+
+	while(pAttrib) {
+		string a(pAttrib->Name());
+		transform(a.begin(), a.end(), a.begin(), tolower);
+		
+		if (a.compare("x") == 0)
+			res.size.x = (float)atof(pAttrib->Value());
+		else if (a.compare("y") == 0)
+			res.size.y = (float)atof(pAttrib->Value());
+		else if (a.compare("z") == 0)
+			res.size.z = (float)atof(pAttrib->Value());
+		else
+			cout << "Unknown attribute in World" << endl;
+
+		pAttrib = pAttrib->Next();
+		i++;
+	}
+	
+	if (i != 3)
+		cout << "Wrong number of attributes in World" << endl;
+
 	hRoot = TiXmlHandle(pElem);
 	pElem = hRoot.FirstChild().Element();
 

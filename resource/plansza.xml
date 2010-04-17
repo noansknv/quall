@@ -18,56 +18,56 @@
   <!--sciany pionowe-->
   <!--z lewej-->
   <cube x1="50.0" y1="50.0" z1="0.0" x2="50.0" y2="190" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <cube x1="50.0" y1="200.0" z1="0.0" x2="50.0" y2="250" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <cube x1="50.0" y1="190.0" z1="5.0" x2="50.0" y2="220" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <!--z prawej-->
   <cube x1="250.0" y1="50.0" z1="0.0" x2="250.0" y2="80" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <cube x1="250.0" y1="110.0" z1="0.0" x2="250.0" y2="250" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <cube x1="250.0" y1="80.0" z1="5.0" x2="250.0" y2="110" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <!--poziomo-->
   <!--dół-->
   <cube x1="50.0" y1="50.0" z1="0.0" x2="80.0" y2="50" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <cube x1="110.0" y1="50.0" z1="0.0" x2="250.0" y2="50" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <!--góra-->
   <cube x1="50.0" y1="250.0" z1="0.0" x2="80.0" y2="250" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <cube x1="110.0" y1="250.0" z1="0.0" x2="250.0" y2="250" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
@@ -75,46 +75,46 @@
   <!--pionowe-->
   <!--lewa-->
   <cube x1="100.0" y1="100.0" z1="0.0" x2="100.0" y2="140" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <cube x1="100.0" y1="160.0" z1="0.0" x2="100.0" y2="200" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <!--prawa-->
   <cube x1="200.0" y1="100.0" z1="0.0" x2="200.0" y2="140" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <cube x1="200.0" y1="160.0" z1="0.0" x2="200.0" y2="200" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <!--poziome-->
   <!--dolna-->
   <cube x1="100.0" y1="100.0" z1="0.0" x2="140.0" y2="100" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <cube x1="160.0" y1="100.0" z1="0.0" x2="200.0" y2="100" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <!--górna-->
   <cube x1="100.0" y1="200.0" z1="0.0" x2="140.0" y2="200" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   <cube x1="160.0" y1="200.0" z1="0.0" x2="200.0" y2="200" z2="50.0">
-    <texture>wall.png</texture>
+    <texture>Quall/Wall</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>

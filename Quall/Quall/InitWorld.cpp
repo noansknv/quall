@@ -4,7 +4,7 @@
 InitWorld::InitWorld(OgreRootPtr o, OgreRenderWindowPtr w)
 : ogWorld(o), ogWindow(w)
 {
-  Parser p("..\\..\\resource\\plansza.xml");
+  Parser p("c:/resource/labirynt_latwy.xml");
   p.readFile();
   parserWorld = p.getWorld();
 
