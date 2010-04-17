@@ -87,7 +87,7 @@ void Description::describeOgreWorld()
     Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
     300, 300, 1, 1, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
   Ogre::Entity *ent = sceneManager->createEntity("GroundEntity", "ground");
-  ent->setMaterialName("Examples/GrassFloor");
+  ent->setMaterialName("Quall/Floor");
   Ogre::SceneNode *planeNode = sceneManager->getRootSceneNode()->createChildSceneNode();
   planeNode->setPosition(150, 0, -150);
   planeNode->attachObject(ent);
@@ -101,7 +101,7 @@ void Description::describeOgreWorld()
 	sprintf(str, "%d", i);
 	Ogre::String id(str);
 	Ogre::String name = "Cube" + id;
-    Ogre::ManualObject *mCube = createCubeMesh(Ogre::Vector3(p1.x, p1.z, -1 * p1.y), Ogre::Vector3(p2.x, p2.z, -1 * p2.y), name, "Examples/GrassFloor");
+    Ogre::ManualObject *mCube = createCubeMesh(Ogre::Vector3(p1.x, p1.z, -1 * p1.y), Ogre::Vector3(p2.x, p2.z, -1 * p2.y), name, "Quall/Wall");
 	mCube->convertToMesh(name);
 	Ogre::Entity *ent = sceneManager->createEntity(name, name);
 	mRootNode->attachObject(ent);

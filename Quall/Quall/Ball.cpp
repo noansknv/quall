@@ -10,6 +10,7 @@ void Ball::describeOgreElement()
 {
   Ogre::Entity* ent = sceneManager->createEntity("ballmesh", "ball.mesh");
   ent->setCastShadows(true);
+  ent->setMaterialName("Quall/Ball");
   node = sceneManager->getRootSceneNode()->createChildSceneNode("ball");
   node->setPosition(position);
   nodeLew = node->createChildSceneNode();
