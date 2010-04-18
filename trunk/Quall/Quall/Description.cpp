@@ -89,8 +89,7 @@ void Description::describeOgreWorld()
   Ogre::Entity *ent = sceneManager->createEntity("GroundEntity", "ground");
   ent->setMaterialName("Quall/Floor");
   Ogre::SceneNode *planeNode = sceneManager->getRootSceneNode()->createChildSceneNode();
-  //hardcode: -170 = -150 - grubosc sciany
-  planeNode->setPosition(150, 0, -170);
+  planeNode->setPosition(parserWorld.size.x / 2, 0, -1 * (parserWorld.size.z / 2));
   planeNode->attachObject(ent);
 
   // sciany
