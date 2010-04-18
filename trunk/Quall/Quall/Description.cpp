@@ -85,11 +85,12 @@ void Description::describeOgreWorld()
   Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
   Ogre::MeshManager::getSingleton().createPlane("ground",
     Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
-	parserWorld.size.x, parserWorld.size.y, 1, 1, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
+	parserWorld.size.x, parserWorld.size.z, 1, 1, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
   Ogre::Entity *ent = sceneManager->createEntity("GroundEntity", "ground");
   ent->setMaterialName("Quall/Floor");
   Ogre::SceneNode *planeNode = sceneManager->getRootSceneNode()->createChildSceneNode();
-  planeNode->setPosition(150, 0, -150);
+  //hardcode: -170 = -150 - grubosc sciany
+  planeNode->setPosition(150, 0, -170);
   planeNode->attachObject(ent);
 
   // sciany
@@ -102,7 +103,7 @@ void Description::describeOgreWorld()
 	sprintf(str, "%d", i);
 	Ogre::String id(str);
 	Ogre::String name = "Cube" + id;
-    Ogre::ManualObject *mCube = createCubeMesh(Ogre::Vector3(p1.x, p1.z, -1 * p1.y), Ogre::Vector3(p2.x, p2.z, -1 * p2.y), name, wall_material);
+    Ogre::ManualObject *mCube = createCubeMesh(Ogre::Vector3(p1.x, p1.y, -1 * p1.z), Ogre::Vector3(p2.x, p2.y, -1 * p2.z), name, wall_material);
 	mCube->convertToMesh(name);
 	Ogre::Entity *ent = sceneManager->createEntity(name, name);
 	mRootNode->attachObject(ent);
@@ -144,7 +145,7 @@ void Description::describeElements()
 {
   WorldElementPtr ball;
   Point p = parserWorld.spawnPoints[0].p;
-  Ogre::Vector3 pos(p.x, p.z, -1 * p.y);
+  Ogre::Vector3 pos(p.x, p.y, -1 * p.z);
   ball.reset(new Ball(ogWorld, btWorld, sceneManager, pos));
   addElement(ball);
   // ustawiamy kuleczke jako glowna postac gry
