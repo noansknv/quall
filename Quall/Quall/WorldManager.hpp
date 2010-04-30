@@ -27,6 +27,7 @@ public:
 
   void setDirectionX(Ogre::Real x);
   void setDirectionZ(Ogre::Real z);
+  void jump();
 
   OgreCameraPtr getCamera() { return camera; }
 

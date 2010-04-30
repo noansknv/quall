@@ -82,6 +82,10 @@ bool InputHandler::keyPressed(const OIS::KeyEvent &evt)
     //if (mSimulation->getCurrentState() == SIMULATION)
     worldMgr->setDirectionX(1);
     break;
+  case OIS::KC_SPACE:
+    //jump
+    worldMgr->jump();
+    break;
   default:
     break;
   }

@@ -53,3 +53,9 @@ void WorldManager::setDirectionZ(Ogre::Real z)
     for (ElementDeque::iterator it = elementsDeque->begin(); it != elementsDeque->end(); ++it)
         (*it)->setDirectionZ(z);
 }
+
+void WorldManager::jump()
+{
+    for (ElementDeque::iterator it = elementsDeque->begin(); it != elementsDeque->end(); ++it)
+        (*it)->jump();
+}
