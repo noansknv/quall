@@ -49,6 +49,10 @@ public:
   {
   }
 
+  virtual void jump()
+  {
+  }
+
   Ogre::SceneNode* getOgNode() { return node; }
 
 protected:

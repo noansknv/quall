@@ -23,12 +23,13 @@ void Ball::describeBulletElement()
   btCollisionShape* fallShape = new btSphereShape(1);
 
   btDefaultMotionState* fallMotionState =
-    new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,20,0)));
+    new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(50,10,-30)));
   btScalar mass = 1;
   btVector3 fallInertia(0,0,0);
   fallShape->calculateLocalInertia(mass,fallInertia);
   btRigidBody::btRigidBodyConstructionInfo fallRigidBodyCI(mass,fallMotionState,fallShape,fallInertia);
   fallRigidBody = new btRigidBody(fallRigidBodyCI);
+//  fallRigidBody->setMassProps(mass, fallInertia);
   btWorld->addRigidBody(fallRigidBody);
 }
 
@@ -48,14 +49,20 @@ void Ball::oneStep()
 	  opada = false;
 	else
       opada = true;
-
-  node->setPosition(node->getPosition().x, trans.getOrigin().getY(), node->getPosition().z);
+  node->setPosition(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()); 
+  //node->setPosition(node->getPosition().x, trans.getOrigin().getY(), node->getPosition().z);
   // Przesuniecie kulki w poziomie.
-  node->translate((direction * move)/* * evt.timeSinceLastFrame*/, Ogre::Node::TS_LOCAL);
-  nodeLew->setPosition(0, wysLew, 0);
+  //node->translate((direction * move)/* * evt.timeSinceLastFrame*/, Ogre::Node::TS_LOCAL);
+  nodeLew->setPosition(0, trans.getOrigin().getY() + wysLew, 0);
+  //btVector3 przesuniecie((direction * move).x, (direction * move).y, (direction * move).z);
+  //btVector3 nowe = trans.getOrigin() + przesuniecie;
+  //trans.setOrigin(nowe);
 
   // co to jest?! :)
   Ogre::WindowEventUtilities::messagePump();
+
+  //fallRigidBody->getMotionState()->setWorldTransform(trans);
+  //m_rigidBody->setCenterOfMassTransform (trans);
 }
 
 
@@ -68,3 +75,22 @@ void Ball::setDirectionZ(Ogre::Real z)
 {
   direction.z = z;
 }
+
+void Ball::jump()
+{
+  btTransform trans;
+  fallRigidBody->getMotionState()->getWorldTransform(trans);
+  
+  if (canJump()) {
+    btVector3 up = trans.getBasis()[1];
+    up.normalize();
+    btScalar magnitude = (btScalar(1.0)/fallRigidBody->getInvMass()) * btScalar(8.0);
+    fallRigidBody->applyCentralImpulse(up * magnitude);
+  }
+}
+
+bool Ball::canJump() 
+{
+  return true;
+}
+

@@ -15,6 +15,8 @@ public:
   void oneStep();
   void setDirectionX(Ogre::Real x);
   void setDirectionZ(Ogre::Real z);
+  void jump();
+  bool canJump();
 private:
   Ogre::Real wysLew;
   bool opada;
