@@ -8,10 +8,10 @@
 #pragma once
 
 // Zasoby
-#define RESOURCE_GUI "d:\\ZPPGoogle\\resource\\gui.zip"
+#define RESOURCE_GUI "c:\\resource\\gui.zip"
 
 // Czcionki
 #define RESOURCE_FONT "c:\\windows\\fonts"
 
 // Nazwa aplikacji
-#define APPNAME "TechDemo"
+#define APPNAME "Quall"
