@@ -1,0 +1,666 @@
+\documentclass[12pt,a4paper,twoside]{article}
+\usepackage{a4wide}
+\usepackage{t1enc}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage{times}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[polish]{babel}
+
+\RequirePackage{comment}
+
+\RequirePackage{a4wide}
+\RequirePackage{longtable}
+\RequirePackage{multicol}
+\RequirePackage{url}
+
+\author{Piotr Czubak, Marcin Kanclerz, Paweł Kozłowski, Filip Mazowiecki}
+\title{Wizja projektu Quall na ZPP 09/10}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+% Note: The following template is provided for use with the
+% Rational Unified Process. Text enclosed in square brackets and displayed in
+% blue italics (style=InfoBlue) is included to provide guidance to the author and
+% should be deleted before publishing the document. A paragraph entered following
+% this style will automatically be set to normal (style=Body Text).
+
+%   
+
+% some table, check it
+
+\section{Wprowadzenie}
+Niniejszy dokument jest analizą wymagań oraz cech akademickiego projektu - trójwymiarowej gry Quall. 
+Opisuje on szczegóły potrzeb docelowego użytkownika (gracza) jak również innych osób w sposób pośredni i bezpośredni wpływających na ostateczny wygląd projektu.
+Szczegółowy opis realizacji systemu zawarty jest w dodatkowej dokumentacji.
+
+% The purpose of this document is to collect,
+% analyze, and define high-level needs and features of the <<System Name>>.  It focuses on the capabilities needed by the
+% stakeholders, and the target users, and why these needs exist.  The details of how the <<System Name>> fulfils these
+% needs are detailed in the use-case and supplementary specifications.
+
+%  [The
+% introduction of the Vision document should provide an overview of the
+% entire document. It should include the purpose, scope, definitions, acronyms,
+% abbreviations, references, and overview of this Vision document.
+
+\subsection{Cel}
+Celem dokumentu jest przedstawienie kontekstu produktu, osób mających wpływ na projekt, priorytetów systemu oraz jego pozostałych własności.
+
+% Specify the purpose of this Vision document.
+
+\subsection{Zakres}
+Dokument zawiera niezbędne decyzje i opisy potrzebne przy tworzeniu następnych dokumentów.
+% A brief description of the scope of this Vision
+% document; what Project(s) it is associated with, and anything else that is
+% affected or influenced by this document.
+
+\subsection{Definicje}
+\begin{itemize}
+\item Gracz - użytkownik gry.
+\item Kulka, Piłka - postać, którą kieruje gracz.
+\item Plansza - przestrzeń gry, po której poruszają się kulki.
+\item Stary Chewbacca - nazwa zespołu tworzącego projekt Quall.
+\end{itemize}
+% This subsection should provide the
+% definitions of all terms, acronyms, and abbreviations required to properly
+% interpret the Vision document.  This information may be provided by
+% reference to the project Glossary.
+
+%\subsection{Załączniki}
+
+% This subsection should provide a complete
+% list of all documents referenced elsewhere in the Vision document.  Each document should be identified by title,
+% report number (if applicable), date, and publishing organization.  Specify the sources from which the
+% references can be obtained. This information may be provided by reference to an
+% appendix or to another document.
+
+\subsection{Omówienie reszty dokumentu}
+W dokumencie znajduje się 9 paragrafów, z których każdy porusza inną kwestię projektu. Zostały omówione wszelkie kwestie związane z organizacją pracy podczas wykonywania projektu oraz opisane osoby uczestniczące w całym tym procesie. Wyspecyfikowano także priorytety poszczególnych elementów systemu. Oprócz tego przedstawione zostały podstawowe założenia gry, dotyczące jej przebiegu oraz funkcji poszczególnych osób z niej korzystających.
+
+
+
+\section{Kontekst produktu}
+
+\subsection{Korzyści}
+Główną korzyścią dla zespołu będzie poznanie nowoczesnych metodologii, architektur systemowych oraz technologii używanych do tworzenia gier. 
+Korzyść drugorzędną stanowić będzie stworzenie gry atrakcyjnej. 
+% Briefly describe the business opportunity being met by this
+% project.
+
+\subsection{Postawienie problemu}
+Cel nadrzędnym stanowi dla nas sprawdzenie się w pisaniu gier oraz w projektowaniu systemów składających się z wielu gotowych bibliotek.
+W związku z tym, do realizacji projektu wybraliśmy najpopularniejsze na rynku gier narzędzia.
+
+
+Akademicki charakter projektu sprawił, że od strony koncepcyjnej, gra nie stara się wpasować w żadną niszę rynkową.
+
+\subsection{Kontekst produktu}
+Istnieje wiele gier realizujących poszczególne części projektu - przechodzenie labiryntu, skakanie po planszy. W ten sposób chcemy poznać podstawowe techiniki przy tworzeniu gier, jednocześnie pisząc ją w ten sposób żeby łatwo dało się rozszerzyć na więcej funkcjonalności.
+
+% Provide an overall statement summarizing at the highest
+% level, the unique position the product intends to fill in the marketplace. The
+% following format may be used:
+
+%For XXXX           % [name the target customer]
+%who XXXX           % [statement of the need or opportunity] (needs, wants etc)
+%The [product name] XXXX % is a [product category]
+%That XXX           % [statement of key benefit; that is, compelling reason
+                   % to buy]
+%Unlike XXXX        % [primary competitive alternative]
+%Our product XXXX   % [statement of primary differentiation]
+
+% A product position statement communicates the intent of the
+% application and the importance of the project to all concerned personnel.
+
+\section{Osoby mające wpływ na wymagania i projekt}
+
+% To effectively
+% provide products and services that meet your stakeholders’ and users' real
+% needs, it is necessary to identify and involve all of the stakeholders as part
+% of the Requirements Modeling process. 
+% You must also identify the users of the system and ensure that the
+% stakeholder community adequately represents them.  This section provides a profile of the stakeholders and users
+% involved in the project and the key problems that they perceive to be addressed
+% by the proposed solution.  It does not
+% describe their specific requests or requirements as these are captured in a
+% separate stakeholder requests artifact. 
+% Instead it provides the background and justification for why the
+% requirements are needed.
+
+
+\subsection{Demografia rynku}
+Nasz rynek docelowy stanowią użytkownicy Internetu.
+Jest to naturalne środowisko dla gier.
+Korzystając z hasła "gra open-source", jako chwytliwego określenia, zamierzamy przyciągnąć niewielką liczbę użytkowników, celem zdobycia od nich informacji zwrotnej dotyczącej jakości produktu.
+% jak to filip powiedział: uwielbiam takie nic nie znaczące zdania :-D
+Biorąc pod uwagę obecną popularność projektów spod szyldu "open-source", można liczyć na liczbę ściągnięć na poziomie co najmniej 20\% statystycznego projektu umieszczonego na serwisach klasy SourceForge oraz ok. 10\% wypełnionych ankiet.
+
+
+% Summarize the key
+% market demographics that motivate your product decisions. Describe and position
+% target market segments. Estimate the market’s size and growth by using the
+% number of potential users, or the amount of money your customers spend trying
+% to meet needs that your product or enhancement would fulfill. Review major industry
+% trends and technologies. Answer these strategic questions:
+
+% •          What is your organization’s reputation
+% in these markets? 
+
+% •           What would you like it to be? 
+
+% •          How does this product or service
+% support your goals?
+
+\subsection{Lista osób mających wpływ na wymagania}
+
+% Present a summary
+% list of all the identified stakeholders.
+
+\begin{longtable}{|p{1in}|p{2in}|p{2in}|}
+\hline
+{\bf Osoba} & {\bf Reprezentuje} & {\bf Rola}\\
+\hline
+\endhead
+Robert Maron &
+Prowadzący przedmiot &
+Weryfikacja założeń oraz stawianie nowych wymagań produktu.\\
+\hline
+Stary Chewbacca &
+Zespół &
+Wywiązanie się z założeń i wymagań, również definiowanie nowych.\\
+\hline
+\end{longtable}
+
+\subsection{Lista potencjalnych użytkowników produktu}
+
+% Present a summary
+% list of all the identified users.
+
+\begin{longtable}{|p{1in}|p{2in}|p{2in}|}
+\hline
+{\bf Osoba} & {\bf Reprezentuje} & {\bf Rola}\\
+\hline
+\endhead
+Beta tester &
+Gracz &
+Kontroluje poziom jakości realizacji wymagań.\\
+\hline
+Użytkownik &
+Gracz &
+Gra.\\
+\hline
+\end{longtable}
+
+\subsection{Środowisko użytkownika}
+System podzielony będzie na dedykowany serwer oraz oprogramowanie klienckie.
+Obydwie aplikacje przeznaczona będą pod systemy rodziny Windows XP oraz nowszych.
+
+% Detail the working
+% environment of the target user. Here are some suggestions:
+
+% Number of people
+% involved in completing the task? Is this changing?
+
+% How long is a task
+% cycle? Amount of time spent in each activity? Is this changing?
+
+% Any unique
+% environmental constraints: mobile, outdoors, in-flight, etc.?
+
+% Which systems
+% platforms are in use today? Future platforms?
+
+% What other
+% applications are in use? Does your application need to integrate with them?
+
+% This is where
+% extracts from the Business Model could be included to outline the task and
+% workers involved etc.
+
+\subsection{Charakterystyka osób mających wpływ na wymagania}
+
+% Describe each
+% stakeholder in the system here by filling in the following table for each
+% stakeholder.  Remember stakeholder types
+% can be as divergent as users, strategy departments and technical
+% developers.  A thorough profile should
+% cover the following topics for each type of stakeholder:
+
+\subsubsection{Prowadzący przedmiot}
+
+\begin{longtable}{|p{1in}|p{4in}|}
+\hline
+Przedstawiciel &
+Robert Maron\\
+
+\hline
+Opis &
+Zajmuje się weryfikacją założeń.\\
+
+\hline
+Typ &
+Ekspert w dziedzinie zarządzania projektami informatycznymi.\\
+
+\hline
+Obowiązki&
+Zgłaszanie uwag do wszystkich aspektów systemu. Ustala termin wykonania.\\
+
+\hline
+Kryteria sukcesu &
+Działająca, przyzwoita gra, która sprawi, że prowadzący nie będzie się musiał chować pod stołem podczas finalnych prezentacji.\\
+
+\hline
+\end{longtable}
+
+\subsubsection{Zespół}
+
+\begin{longtable}{|p{1in}|p{4in}|}
+\hline
+Przedstawiciel &
+Stary Chewbacca\\
+
+\hline
+Opis &
+Zajmuje się projektowaniem produktu oraz realizacją założeń.\\
+
+\hline
+Typ &
+Studenci, autorzy projektu.\\
+
+\hline
+Obowiązki&
+Terminowe wywiązywanie się z realizacji projektu.\\
+
+\hline
+Kryteria sukcesu &
+Działająca, przyzwoita gra, która sprawi, że prowadzący nie będzie się musiał chować pod stołem podczas finalnych prezentacji.\\
+
+\hline
+\end{longtable}
+
+\subsection{Charakterystyka użytkowników}
+
+% Describe each
+% unique user of the system here by filling in the following table for each user
+% type.  Remember user types can be as
+% divergent as gurus and novices. For example, a guru might need a sophisticated,
+% flexible tool with cross-platform support, while a novice might need a tool
+% that is easy to use and user-friendly. A thorough profile should cover the
+% following topics for each type of user:
+
+\subsubsection{Beta tester}
+
+\begin{longtable}{|p{1in}|p{4in}|}
+\hline
+Przedstawiciel &
+Gracz\\
+
+\hline
+Opis &
+Zajmuje się testowaniem systemu pod względem istniejących błędów.\\
+
+\hline
+Typ &
+Studenci, znajomi autorów.\\
+
+\hline
+Obowiązki&
+Wykrywanie błędów.\\
+
+\hline
+Kryteria sukcesu &
+Wykrycie błędów mających istotny wpływ na rozgrywkę.\\
+
+\hline
+\end{longtable}
+
+\subsubsection{Użytkownicy}
+
+\begin{longtable}{|p{1in}|p{4in}|}
+\hline
+Przedstawiciel &
+Gracze\\
+
+\hline
+Opis &
+Zajmuje się użytkowaniem systemu.\\
+
+\hline
+Typ &
+Internauci.\\
+
+\hline
+Obowiązki &
+Brak.\\
+
+\hline
+Kryteria sukcesu &
+Satysfakcja z gry.\\
+
+\hline
+\end{longtable}
+
+% \subsection{Kluczowe wymagania}
+
+% List the key
+% problems with existing solutions as perceived by the stakeholder. Clarify the
+% following issues for each problem:
+
+% •          What are the reasons for this problem?
+
+
+% •          How is it solved now?
+
+% •          What solutions does the stakeholder
+% want?
+
+% It is important to
+% understand the relative importance the stakeholder or user places on
+% solving each problem. Ranking and cumulative voting techniques indicate
+% problems that must be
+% solved versus issues they would like addressed.
+
+% Fill in the
+% following table - if using ReqPro to capture the Needs, this could be an
+% extract or report from that tool.
+
+% {\small\begin{longtable}{|p{1.5in}|p{.5in}|p{1in}|p{1in}|p{1in}|}
+% \hline
+% Need & Priority & Concerns & Current Solution & Proposed Solution\\
+% \hline
+% \endhead
+
+% Broadcast Messages & \  & \  & \  & \  \\
+% \hline
+% \end{longtable}}
+
+\subsection{Alternatywy i konkurencja}
+
+% Identify
+% alternatives the stakeholder perceives as available. These can include buying a
+% competitor’s product, building a homegrown solution or simply maintaining the
+% status quo. List any known competitive choices that exist, or may become
+% available. Include the major strengths and weaknesses of each competitor as
+% perceived by the stakeholder.
+
+Ze względu na to, że nasz projekt nie będzie miał charakteru komercyjnego, w sposób bezpośredni wielkość, ani struktura rynku nas nie dotyczą. 
+
+\section{Omówienie produktu}
+
+% This section provides a high level view of the product
+% capabilities, interfaces to other applications, and systems configurations.
+% This section usually consists of three subsections, as follows: 
+
+% •          Product
+% perspective 
+
+% •          Product
+% functions 
+
+% •            Assumptions
+% and dependencies
+
+\subsection{Umiejscowienie produktu}
+Quall będzie samodzielnym produktem, dostępnym do ściągnięcia z Internetu. 
+Nie będzie wymagał żadnego dodatkowego oprogramowania od użytkownika.
+
+% This subsection of the Vision document should put the
+% product in perspective to other related products and the user’s environment. If
+% the product is independent and totally self-contained, state it here. If the
+% product is a component of a larger system, then this subsection should relate
+% how these systems interact and should identify the relevant interfaces between
+% the systems. One easy way to display the major components of the larger system,
+% interconnections, and external interfaces is via a block diagram.
+
+\subsection{Podsumowanie możliwości}
+
+% Summarize the major benefits and features the product will
+% provide. For example, a Vision document for a customer support system
+% may use this part to address problem documentation, routing, and status
+% reporting without mentioning the amount of detail each of these functions requires.
+
+% Organize the functions so the list is understandable to the
+% customer or to anyone else reading the document for the first time. A simple
+% table listing the key benefits and their supporting features might suffice. For
+% example:
+
+\begin{center}
+
+\begin{longtable}{|p{2.5in}|p{2.5in}|}
+\hline
+\bf Korzyści dla gracza & \bf Możliwości gry\\
+\hline\endhead
+
+Świat gry &
+Za pomocą pliku xml można stworzyć w prosty sposób własną planszę.\\
+\hline
+
+Rozrywka &
+W zależności od planszy gra może być trudna ale może też być prosta i na mniej niż 5 minut.\\
+\hline
+
+\end{longtable}
+\end{center}
+
+\subsection{Koszta}
+Gra wraz z całą potrzebną instrukcją użytkownika będzie darmowa.
+
+% For products sold to external customers and for many in-
+% house applications, cost and pricing issues can directly impact the
+% applications definition and implementation. In this section, record any cost
+% and pricing constraints that are relevant. For example, distribution costs, (#
+% of diskettes, # CD-ROMs, CD mastering) or other cost of goods sold constraints
+% (manuals, packaging) may be material to the projects success, or irrelevant,
+% depending on the nature of the application.
+
+% \subsection{Licencjonowanie i instalacja}
+
+% Licensing and installation issues can also directly impact
+% the development effort. For example, the need to support serializing, password
+% security or network licensing will create additional requirements of the system
+% that must be considered in the development effort.
+
+% Installation requirements may also affect coding, or create
+% the need for separate installation software.
+
+\section{Własności produktu}
+
+% List and briefly describe the product features. Features are
+% the high-level capabilities of the system that are necessary to deliver
+% benefits to the users. Each feature is an externally desired service that
+% typically requires a series of inputs to achieve the desired result. For
+% example, a feature of a problem tracking system might be the ability to provide
+% trending reports. As the use-case model takes shape, update the description to
+% refer to the use cases.
+
+% Because the Vision document is reviewed by a wide
+% variety of involved personnel, the level of detail should be general enough for
+% everyone to understand. However, enough detail should be available to provide
+% the team with the information they need to create a use-case model.
+
+% To effectively manage application complexity, we recommend
+% for any new system, or an increment to an existing system, capabilities are
+% abstracted to a high enough level so 25-99 features result. These features
+% provide the fundamental basis for product definition, scope management, and
+% project management. Each feature will be expanded in greater detail in the use-case
+% model.
+
+% Throughout this section, each feature should be externally
+% perceivable by users, operators or other external systems. These features
+% should include a description of functionality and any relevant usability issues
+% that must be addressed. The following guidelines apply:
+
+% •          Avoid design. Keep feature
+% descriptions at a general level. Focus on capabilities needed and why, (not
+% how)   they should be implemented.
+
+% •          If you are using the Requisite
+% toolkit, all should be selected as requirements of type for easy reference and
+% tracking.
+\subsection{Ogólny opis}
+Bohaterem jest Piłeczka, na którą działają zwykłe prawa fizyki. Piłeczka jest elastyczna, przez co ma dość wysoki poziom skoczności oraz umiejętności odbijania się od różnych elementów, które napotka na swej drodze. Piłeczka z faktu bycia kulą, nie posiada przodu ani tyłu.
+
+\subsection{Miejsce rozgrywki}
+Plansza, po której piłeczka się porusza może być dowolnie wymodelowaną przestrzenią. Jest to labirynt, który można stworzyć samemu w zależności od preferencji.
+
+\subsection{System gry}
+Gra polega na przejściu z wejścia labiryntu do wyjścia.
+
+% \section{Ograniczenia}
+
+% Note any design constraints, external constraints or other
+% dependencies.
+
+\section{Założenia jakościowe}
+Quall musi zapewnić płynną i komfortową rozgrywke dla graczy przechodzących przez labirynt.
+
+% Define the quality ranges for performance, robustness, fault
+% tolerance, usability, and similar characteristics that are not captured in the
+% Feature Set.
+
+\section{Priorytety}
+\subsection{Wysoki}
+\begin{itemize}
+\item Grafika 3D
+\item Podstawowa logika gry
+\item Zaawansowana fizyka świata
+\end{itemize}
+\subsection{Średni}
+\begin{itemize}
+\item Skryptowy sposób opisu plansz
+\end{itemize}
+\subsection{Niski}
+\begin{itemize}
+\item Grywalność
+\item Wydajność
+\end{itemize}
+
+\section{Inne wymagania}
+
+% At a high-level, list applicable standards, hardware or
+% platform requirements, performance requirements, and environmental
+% requirements.
+
+\subsection{Standardy}
+
+% List all standards with which the product must comply. These
+% can include legal and regulatory (FDA, UCC) communications standards (TCP/IP,
+% ISDN), platform compliance standards (Windows, Unix, etc.), and quality and
+% safety standards (UL, ISO, CMM).
+
+Standardy wykorzystane przy tworzeniu gry:
+\begin{itemize}
+\item Kodowanie znaków: UTF-8
+\item Platforma docelowa: Windows
+\end{itemize}
+
+\subsection{Wymagania systemowe}
+
+% Define any system requirements necessary to support the
+% application. These can include the supported host operating systems and network
+% platforms, configurations, memory, peripherals, and companion software.
+
+Wymagania klienta:
+\begin{itemize}
+\item Karta graficzna obsługująca grafikę 3D
+\item 1GB pamięci operacyjnej
+\item System operacyjny: Windows
+\end{itemize}
+Wymagania serwera:
+\begin{itemize}
+\item 512MB pamięci operacyjnej
+\item System operacyjny: Windows
+\end{itemize}
+
+%\subsection{Wymagania wydajnościowe}
+
+% Use this section to detail performance requirements.
+% Performance issues can include such items as user load factors, bandwidth or
+% communication capacity, throughput, accuracy, and reliability or response times
+% under a variety of loading conditions.
+
+%\subsection{Wymagania środowiska}
+
+% Detail environmental requirements as needed. For hardware-
+% based systems, environmental issues can include temperature, shock, humidity,
+% radiation, etc. For software applications, environmental factors can include
+% usage conditions, user environment, resource availability, maintenance issues,
+% and error handling, and recovery.
+
+\section{Przykładowe przebiegi systemu}
+\begin{itemize}
+\item Gracz uruchamia grę.
+\item Gracz gra.
+\item Gracz po przejściu gry wychodzi z gry.
+\end{itemize}
+
+\section{Wymagania dokumentacyjne}
+
+% This section describes the documentation that must be
+% developed to support successful application deployment.
+
+% Describe the purpose and contents of the User Manual.
+% Discuss desired length, level of detail, need for index, glossary of terms,
+% tutorial vs. reference manual strategy, etc. Formatting and printing constraints
+% should also be identified.
+
+Użytkownicy będą mogli czerpać wszystkie potrzebne informacje o grze z załączonej instrukcji w formacie elektronicznym. Dokument ten będzie zawierał wszelkie informacje o poprawnym skonfigurowaniu gry, sterowaniu oraz koncepcji i przebiegu całej rozgrywki. Podręcznik będzie stosunkowo niewielkich rozmiarów z uwagi na prostotę rozgrywki.
+
+%\subsection{Pomoc on-line}
+
+% Many applications provide an on-line help system to assist
+% the user. The nature of these systems is unique to application development as
+% they combine aspects of programming (hyperlinks, etc) with aspects of technical
+% writing (organization, presentation). Many have found the development of
+% on-line help system is a project within a project that benefits from up-front
+% scope management and planning activity.
+
+%\subsection{Instalacja i konfiguracja}
+
+% A document that includes installation instructions and
+% configuration guidelines is important to a full solution offering. Also, a Read
+% Me file is typically included as a standard component. The Read Me can include
+% a "What's New With This Release” section, and a discussion of
+% compatibility issues with earlier releases. Most users also appreciate
+% documentation defining any known bugs and workarounds in the Read Me file.
+
+%\subsection{Oznaczenia markowe}
+
+% Today's state of the art applications provide a consistent
+% look and feel that begins with product packaging and manifests through
+% installation menus, splash screens, help systems, GUI dialogs, etc. This
+% section defines the needs and types of labeling to be incorporated into the
+% code. Examples include copyright and patent notices, corporate logos,
+% standardized icons and other graphic elements, etc.
+%Quall będzie reprezentowana przez logo.
+
+
+\section{Historia zmian}
+
+\begin{verbatim}
+20 X 2009 - prototyp dokumentu
+26 X 2009 - przegląd I
+28 X 2009 - przegląd II
+4 XI 2009 - dodanie flowow
+1 V 2010 - przegląd III
+\end{verbatim}
+
+\end{document}
+
+
