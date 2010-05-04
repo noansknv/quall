@@ -56,6 +56,10 @@ World Parser::getWorld()
 			res.size.z = (float)atof(pAttrib->Value());
 		else if (a.compare("z") == 0)
 			res.size.y = (float)atof(pAttrib->Value());
+		else if (a.compare("floor") == 0)
+			res.floor = pAttrib->Value();
+		else if (a.compare("ball") == 0)
+			res.ball = pAttrib->Value();
 		else
 			cout << "Unknown attribute in World" << endl;
 
@@ -141,15 +145,15 @@ Cube Parser::parseCube(TiXmlElement* pElem)
 		if (a.compare("x1") == 0)
 			p1.x = (float)atof(pAttrib->Value());
 		else if (a.compare("y1") == 0)
-			p1.z = (float)atof(pAttrib->Value());
+			p2.z = (float)atof(pAttrib->Value());
 		else if (a.compare("z1") == 0)
-			p1.y = (float)atof(pAttrib->Value());
+			p2.y = (float)atof(pAttrib->Value());
 		else if (a.compare("x2") == 0)
 			p2.x = (float)atof(pAttrib->Value());
 		else if (a.compare("y2") == 0)
-			p2.z = (float)atof(pAttrib->Value());
+			p1.z = (float)atof(pAttrib->Value());
 		else if (a.compare("z2") == 0)
-			p2.y = (float)atof(pAttrib->Value());
+			p1.y = (float)atof(pAttrib->Value());
 		else
 			cout << "Unknown attribute in Spawn" << endl;
 
