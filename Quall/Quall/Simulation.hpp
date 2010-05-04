@@ -1,3 +1,6 @@
+/**
+ * Maszyna stanowa gry.
+ */
 #pragma once
 
 #include <vector>
@@ -20,9 +23,11 @@ public:
     virtual ~Simulation();
 
 public:
+	/** Zmiana stanu gry. */
     bool requestStateChange(SimulationState state);
     bool lockState();
     bool unlockState();
+	/** Sprawdzenie obecnego stanu gry. */
     SimulationState getCurrentState();
 
     void setFrameTime(float ms);

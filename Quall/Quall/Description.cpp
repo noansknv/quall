@@ -1,15 +1,12 @@
 #include "Description.hpp"
-#include "parser.hpp"
-#include <cmath>
 
-/*
-* Implementacja konstruktora. Smart.
-*/
 Description::Description(OgreRootPtr o, OgreRenderWindowPtr w) : InitWorld(o, w)
 {
 }
 
-// daje nam cube'a ladnego, trzeba updatenac troche tylko :)
+/**
+* Po poprawieniu koordynatow do nakladania tekstur oraz ustawieniu cieni, zwracamy gotowego cube'a.
+*/
 Ogre::ManualObject* Description::createCubeMesh(Ogre::Vector3 fbl, Ogre::Vector3 btr, Ogre::String name, Ogre::String matName)
 {
   Ogre::ManualObject* cube = new Ogre::ManualObject(name);
@@ -63,8 +60,7 @@ Ogre::ManualObject* Description::createCubeMesh(Ogre::Vector3 fbl, Ogre::Vector3
 
 
 /**
-* Skrajnie hardkodowane utworzenie menedzera sceny, kamery i ustawienia kolorow.
-* Nastepnie SILOWO tworzona jest kuleczka.
+* Utworzenie sceny: ustawienie swiata, wspolczynnikow kamery, managera i masy innych rzeczy.
 */
 void Description::describeOgreWorld()
 {
@@ -172,7 +168,9 @@ void Description::describeBulletWorld() {
 
 }
 
-
+/**
+ * Wstawienie spawnpointu, dynamicznych elementow planszy i glownego bohatera - kuleczki.
+ */
 void Description::describeElements()
 {
   WorldElementPtr ball;

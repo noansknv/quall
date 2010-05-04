@@ -41,6 +41,10 @@ bool Simulation::unlockState()
         return false;
 }
 
+/**
+* Wykorzystujemy w sposob faktyczny jedynie kilka stanow, lecz model pokazuje, ze maszyne latwo rozszerzyc o 
+* dodatkowa funkcjonalnosc.
+*/
 bool Simulation::requestStateChange(SimulationState newState)
 {
     if (m_state == STARTUP)

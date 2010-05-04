@@ -1,4 +1,6 @@
 /**
+* Abstrakcyjna klasa opisujaca dynamiczne elementy swiata, takie jak np. kulka.
+* Opis jest osobny dla Ogra, a osobny dla Bulleta.
 * @author marcin.kanclerz
 */
 #pragma once
@@ -17,34 +19,31 @@ typedef std::deque<WorldElementPtr> ElementDeque;
 // Typ wskaznika do listy elementow.
 typedef boost::shared_ptr<ElementDeque> ElementDequePtr;
 
-/**
-* Abstrakcyjna klasa opisujaca dynamiczne elementy swiata, takie jak np. kulka.
-* Opis jest osobny dla Ogra, a osobny dla Bulleta.
-*/
+
 class WorldElement
 {
 public:
-  // Inline-owy konstruktor, poniewaz plik .cpp jest zbedny.
+  /** Inline-owy konstruktor, poniewaz plik .cpp jest zbedny. */
 	WorldElement(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr c)
 		: ogWorld(o), btWorld(b), sceneManager(s), direction(Ogre::Vector3::ZERO), move(0.5), position(pos), camera(c)
   {
   }
 
-  // Opisuje element dla ogra.
+  /** Opisuje element dla ogra. */
   virtual void describeOgreElement() = 0;
 
-  // Opisuje element dla bulleta.
+  /** Opisuje element dla bulleta. */
   virtual void describeBulletElement() = 0;
 
-  // Wykonuje pojedynczy krok symulacji.
+  /** Wykonuje pojedynczy krok symulacji. */
   virtual void oneStep() = 0;
 
-  // Modyfikuje wektor kierunku ruchu.
+  /** Modyfikuje wektor kierunku ruchu. */
   virtual void setDirectionX(Ogre::Real x)
   {
   }
 
-  // Modyfikuje wektor kierunku ruchu.
+  /** Modyfikuje wektor kierunku ruchu. */
   virtual void setDirectionZ(Ogre::Real z)
   {
   }
@@ -61,18 +60,18 @@ protected:
   BtDiscreteWorldPtr btWorld;
   OgreCameraPtr camera;
 
-  // Uchwyt elementu w bullecie.
+  /** Uchwyt elementu w bullecie. */
   btRigidBody* fallRigidBody;
 
-  // Uchwyt elementu w ogrze.
+  /** Uchwyt elementu w ogrze. */
   Ogre::SceneNode *node;
 
-  // Punkt startowy pojawienia sie elementu.
+  /** Punkt startowy pojawienia sie elementu. */
   Ogre::Vector3 position;
 
-  // Wspolczynnik predkosci ruchu.
+  /** Wspolczynnik predkosci ruchu. */
   Ogre::Real move;
 
-  // Wektor kierunku ruchu.
+  /** Wektor kierunku ruchu. */
   Ogre::Vector3 direction;
 };

@@ -1,4 +1,7 @@
 /**
+* Klasa wspolodpowiedzialna za synchronizacje swiatow: fizycznego oraz graficznego.
+* Chociaz InitWorld tworzy podstawowy uklad swiata, to WorldManager jest odpowiedzialny
+* za wszelkie pozniejsze operacje na nim wespol z MotionState-ami
 * @author marcin.kanclerz
 */
 #pragma once
@@ -12,23 +15,23 @@ class WorldManager;
 
 typedef boost::shared_ptr<WorldManager> WorldManagerPtr;
 
-/**
-* Klasa wspolodpowiedzialna za synchronizacje swiatow: fizycznego oraz graficznego.
-* Chociaz InitWorld tworzy podstawowy uklad swiata, to WorldManager jest odpowiedzialny
-* za wszelkie pozniejsze operacje na nim wespol z MotionState-ami
-*/
+
 class WorldManager
 {
 public:
   WorldManager(InitWorldPtr worldDesc);
 
-  // Wykonuje pojedynczy krok calego swiata.
+  /** Wykonuje pojedynczy krok calego swiata. */
   void oneStep();
 
+  /** Ustawia kierunek poruszania sie bohatera. */
   void setDirectionX(Ogre::Real x);
+  /** Ustawia kierunek poruszania sie bohatera. */
   void setDirectionZ(Ogre::Real z);
+  /** Faktycznie wykonanie skoku przez bohatera. */
   void jump();
 
+  /** Getter do kamery. */
   OgreCameraPtr getCamera() { return camera; }
 
 private:

@@ -1,16 +1,17 @@
 /**
-* @author marcin.kanclerz
+* Opis przykladowego swiata.
+* Plaska powierzchnia z opadajaca na nia kulka.
+* @author marcin.kanclerz filip.mazowiecki
 */
 #pragma once
 
+#include <cmath>
 #include "InitWorld.hpp"
 #include "WorldElement.hpp"
 #include "Ball.hpp"
+#include "parser.hpp"
 
-/**
-* Opis przykladowego swiata.
-* Tutaj - plaska powierzchnia z opadajaca na nia kulka.
-*/
+
 class Description : public InitWorld
 {
 public:

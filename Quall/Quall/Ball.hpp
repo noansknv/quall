@@ -1,4 +1,7 @@
 /**
+* Klasa implementujaca glownego bohatera gry - kulke.
+* Rozszerza WorldElement by uzyskac zunifikowany interfejs dla wszystkich dynamicznych obiektow
+* wystepujacych w grze.
 * @author marcin.kanclerz
 */
 #pragma once
@@ -24,6 +27,8 @@ private:
   Ogre::Vector3 start;
   Ogre::Vector3 stop;
   bool opada;
-  // Dodatkowy wezel potrzebny do animacji lewitacji.
+  /**
+   * Dodatkowy wezel potrzebny do animacji lewitacji.
+   */
   Ogre::SceneNode *nodeLew;
 };

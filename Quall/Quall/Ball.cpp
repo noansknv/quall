@@ -5,7 +5,9 @@ Ball::Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vec
 {
 }
 
-
+/**
+ * Kulka korzysta z materialow zdefiniowanych w trakcie inicjalizacji calego systemu.
+ */
 void Ball::describeOgreElement()
 {
   Ogre::Entity* ent = sceneManager->createEntity("ballmesh", "ball.mesh");
@@ -34,6 +36,9 @@ void Ball::describeBulletElement()
 }
 
 
+/**
+ * Obsluga paru ciekawych ficzerow glownego bohatera, m.in. animacji lewitacji czy faktycznego poruszania sie.
+ */
 void Ball::oneStep()
 {
   btTransform trans;
@@ -117,6 +122,10 @@ void Ball::setDirectionZ(Ogre::Real z)
   }*/
 }
 
+
+/**
+ * Uczymy sie skakac - przykladamy odpowiednia sile o odpowiednim zwrocie i kierunku do naszego obiektu.
+ */
 void Ball::jump()
 {
   btTransform trans;
@@ -130,6 +139,9 @@ void Ball::jump()
   }
 }
 
+/**
+ * Blokujemy mozliwosc skakania zbyt wysoko.
+ */
 bool Ball::canJump() 
 {
   btTransform trans;
