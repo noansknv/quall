@@ -9,7 +9,7 @@
 class Ball : public WorldElement
 {
 public:
-  Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos);
+  Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera);
   void describeOgreElement();
   void describeBulletElement();
   void oneStep();

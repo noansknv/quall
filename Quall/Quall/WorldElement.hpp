@@ -25,8 +25,8 @@ class WorldElement
 {
 public:
   // Inline-owy konstruktor, poniewaz plik .cpp jest zbedny.
-	WorldElement(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos)
-		: ogWorld(o), btWorld(b), sceneManager(s), direction(Ogre::Vector3::ZERO), move(0.5), position(pos)
+	WorldElement(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr c)
+		: ogWorld(o), btWorld(b), sceneManager(s), direction(Ogre::Vector3::ZERO), move(0.5), position(pos), camera(c)
   {
   }
 
@@ -59,6 +59,7 @@ protected:
   OgreRootPtr ogWorld;
   OgreSceneManagerPtr sceneManager;
   BtDiscreteWorldPtr btWorld;
+  OgreCameraPtr camera;
 
   // Uchwyt elementu w bullecie.
   btRigidBody* fallRigidBody;
