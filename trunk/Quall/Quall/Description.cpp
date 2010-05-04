@@ -1,5 +1,6 @@
 #include "Description.hpp"
 #include "parser.hpp"
+#include <cmath>
 
 /*
 * Implementacja konstruktora. Smart.
@@ -143,11 +144,14 @@ void Description::describeBulletWorld() {
   {
       Point p1 = parserWorld.cubes[i].p1;
       Point p2 = parserWorld.cubes[i].p2;
-      btVector3 v(p1.x - p2.x, p1.y - p2.y, p1.z - p2.z);
+      btVector3 v(abs(p2.x - p1.x)/2, abs(p2.y - p1.y)/2, abs(p2.z - p1.z)/2);
 
       btCollisionShape* cubeShape = new btBoxShape(v);
       btDefaultMotionState* cubeMotionState = new 
-          btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(p1.x, p1.y, p1.z)));
+         btDefaultMotionState(btTransform(btQuaternion(0,0,0,1), btVector3((p2.x + p1.x)/2, (p2.y + p1.y)/2, (-1 * p2.z - p1.z)/2)));
+      //btDefaultMotionState* cubeMotionState = new 
+        //  btDefaultMotionState(btTransform(btQuaternion(0,0,0,1), btVector3(p1.x, p1.y, -1 * p1.z)));
+      //cubeMotionState->getWorldTransform(->setOrigin(btVector3(p1.x, p1.y, p1.z);
 
       btRigidBody::btRigidBodyConstructionInfo
                 cubeRigidBodyCI(0, cubeMotionState, cubeShape, btVector3(0,0,0));
@@ -155,11 +159,11 @@ void Description::describeBulletWorld() {
       btWorld->addRigidBody(cubeRigidBody);
   }
 
-/*  btVector3 v(5, 5, 5);
+  /*btVector3 v(5, 5, 5);
 
   btCollisionShape* cubeShape = new btBoxShape(v);
   btDefaultMotionState* cubeMotionState = new
-    btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(49, 3, -29)));
+    btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(49, 6, -29)));
 
   btRigidBody::btRigidBodyConstructionInfo
   cubeRigidBodyCI(0, cubeMotionState, cubeShape, btVector3(0,0,0));

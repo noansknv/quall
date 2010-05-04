@@ -23,7 +23,7 @@ void Ball::describeBulletElement()
   btCollisionShape* fallShape = new btSphereShape(1);
 
   btDefaultMotionState* fallMotionState =
-    new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(50,10,-30)));
+    new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(50,30,-30)));
   btScalar mass = 1;
   btVector3 fallInertia(0,0,0);
   fallShape->calculateLocalInertia(mass,fallInertia);
@@ -68,12 +68,27 @@ void Ball::oneStep()
 
 void Ball::setDirectionX(Ogre::Real x)
 {
-  direction.x = x;
+    //fallRigidBody->clearForces();
+  btTransform trans;
+  fallRigidBody->getMotionState()->getWorldTransform(trans);
+  
+  //btVector3 up = trans.getBasis()[2];
+  btVector3 up(x, 0, 0);
+  btScalar magnitude = (btScalar(1.0)/fallRigidBody->getInvMass()) * btScalar(1.0);
+  fallRigidBody->applyCentralImpulse(up * magnitude);
 }
 
 void Ball::setDirectionZ(Ogre::Real z)
 {
-  direction.z = z;
+  //fallRigidBody->clearForces();
+  //direction.z = z;
+  btTransform trans;
+  fallRigidBody->getMotionState()->getWorldTransform(trans);
+  
+  //btVector3 up = trans.getBasis()[2];
+  btVector3 up(0, 0, z);
+  btScalar magnitude = (btScalar(1.0)/fallRigidBody->getInvMass()) * btScalar(1.0);
+  fallRigidBody->applyCentralImpulse(up * magnitude);
 }
 
 void Ball::jump()
@@ -82,8 +97,8 @@ void Ball::jump()
   fallRigidBody->getMotionState()->getWorldTransform(trans);
   
   if (canJump()) {
-    btVector3 up = trans.getBasis()[1];
-    up.normalize();
+    //btVector3 up = trans.getBasis()[1];
+    btVector3 up(0, 1, 0);
     btScalar magnitude = (btScalar(1.0)/fallRigidBody->getInvMass()) * btScalar(8.0);
     fallRigidBody->applyCentralImpulse(up * magnitude);
   }
@@ -91,6 +106,9 @@ void Ball::jump()
 
 bool Ball::canJump() 
 {
-  return true;
+  btTransform trans;
+  fallRigidBody->getMotionState()->getWorldTransform(trans);
+
+  return trans.getOrigin().getY() <= 2;
 }
 

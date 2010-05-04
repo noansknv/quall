@@ -26,11 +26,11 @@ public:
   InitWorld(OgreRootPtr o, OgreRenderWindowPtr w);
   ~InitWorld();
 
-  // Opisuje swiat graficzny. Musi zdefiniowac menadzera sceny oraz kamere.
-  virtual void describeOgreWorld() = 0;
-
   // Opisuje swiat fizyczny. Musi utworzyc swiat Bulleta.
   virtual void describeBulletWorld() = 0;
+
+  // Opisuje swiat graficzny. Musi zdefiniowac menadzera sceny oraz kamere.
+  virtual void describeOgreWorld() = 0;
 
   // Opisuje wszystkie dynamiczne elementy swiata - dodaje je.
   virtual void describeElements() = 0;
