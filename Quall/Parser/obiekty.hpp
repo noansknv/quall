@@ -35,6 +35,8 @@ public:
 	Point size;
     vector<Cube> cubes;
     vector<Spawn> spawnPoints;
+	string floor;
+	string ball;
 	void addSpawn(Spawn s) { };
 	void addCube(Cube s) { };
 };

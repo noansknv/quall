@@ -1,7 +1,7 @@
 #include "ball.hpp"
 
-Ball::Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera)
-: wysLew(0), opada(false), WorldElement(o, b, s, pos, camera)
+Ball::Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::Vector3 fin)
+: start(pos), stop(fin), ball_material(material), wysLew(0), opada(false), WorldElement(o, b, s, pos, camera)
 {
 }
 
@@ -10,7 +10,7 @@ void Ball::describeOgreElement()
 {
   Ogre::Entity* ent = sceneManager->createEntity("ballmesh", "ball.mesh");
   ent->setCastShadows(true);
-  ent->setMaterialName("Quall/Ball");
+  ent->setMaterialName(ball_material);
   node = sceneManager->getRootSceneNode()->createChildSceneNode("ball");
   node->setPosition(position);
   nodeLew = node->createChildSceneNode();
@@ -23,7 +23,7 @@ void Ball::describeBulletElement()
   btCollisionShape* fallShape = new btSphereShape(1.2);
 
   btDefaultMotionState* fallMotionState =
-    new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(50,6,-30)));
+    new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(start.x, start.y, start.z)));
   btScalar mass = 20;
   btVector3 fallInertia(0,0,0);
   fallShape->calculateLocalInertia(mass,fallInertia);
@@ -38,6 +38,13 @@ void Ball::oneStep()
 {
   btTransform trans;
   fallRigidBody->getMotionState()->getWorldTransform(trans);
+
+  Ogre::Vector3 posit(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ());
+
+  if (posit.squaredDistance(stop) <= 100)
+  {
+
+  }
 
   // pomocne przy animacji lewitacji
   if (opada && wysLew >= 0.01)

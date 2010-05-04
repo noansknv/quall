@@ -88,7 +88,7 @@ void Description::describeOgreWorld()
     Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
 	parserWorld.size.x, parserWorld.size.z, 1, 1, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
   Ogre::Entity *ent = sceneManager->createEntity("GroundEntity", "ground");
-  ent->setMaterialName("Quall/Floor");
+  ent->setMaterialName(parserWorld.floor);
   Ogre::SceneNode *planeNode = sceneManager->getRootSceneNode()->createChildSceneNode();
   planeNode->setPosition(parserWorld.size.x / 2, 0, -1 * (parserWorld.size.z / 2));
   planeNode->attachObject(ent);
@@ -177,8 +177,10 @@ void Description::describeElements()
 {
   WorldElementPtr ball;
   Point p = parserWorld.spawnPoints[0].p;
+  Point p2 = parserWorld.spawnPoints[1].p;
   Ogre::Vector3 pos(p.x, p.y, -1 * p.z);
-  ball.reset(new Ball(ogWorld, btWorld, sceneManager, pos, camera));
+  Ogre::Vector3 fin(p2.x, p2.y, -1 * p2.z);
+  ball.reset(new Ball(ogWorld, btWorld, sceneManager, pos, camera, parserWorld.ball, fin));
   addElement(ball);
   // ustawiamy kuleczke jako glowna postac gry
   mainCharacter = ball;
