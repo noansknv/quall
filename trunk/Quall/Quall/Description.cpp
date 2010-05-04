@@ -79,7 +79,7 @@ void Description::describeOgreWorld()
   // swiatlo i cienie
   sceneManager->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
   Ogre::Light* l = sceneManager->createLight("MainLight");
-  l->setPosition(40, 20, 0);
+  l->setPosition(-10, 500, 10);
   sceneManager->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
 
   // plaszczyzna
@@ -178,7 +178,7 @@ void Description::describeElements()
   WorldElementPtr ball;
   Point p = parserWorld.spawnPoints[0].p;
   Ogre::Vector3 pos(p.x, p.y, -1 * p.z);
-  ball.reset(new Ball(ogWorld, btWorld, sceneManager, pos));
+  ball.reset(new Ball(ogWorld, btWorld, sceneManager, pos, camera));
   addElement(ball);
   // ustawiamy kuleczke jako glowna postac gry
   mainCharacter = ball;
