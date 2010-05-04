@@ -6,15 +6,15 @@
  */
 WorldManager::WorldManager(InitWorldPtr worldDescription)
 {
+    // ...nastepnie opisujemy swiat bullet i rowniez zbieramy plony
+    worldDescription->describeBulletWorld();
+    btWorld = worldDescription->getBtWorld();
+
     ogWorld = worldDescription->getOgWorld();
     ogWindow = worldDescription->getOgWindow();
 
     // opisujemy swiat ogra i zbieramy plony...
     worldDescription->describeOgreWorld();
-
-	// ...nastepnie opisujemy swiat bullet i rowniez zbieramy plony
-    worldDescription->describeBulletWorld();
-    btWorld = worldDescription->getBtWorld();
 
     // i dodajemy wszystkie elementy do swiata
     worldDescription->describeElements();
