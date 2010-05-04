@@ -1,4 +1,6 @@
 /**
+* Abstrakcyjna klasa sluzaca, do opisu poczatkowego stanu sceny.
+* Opisuje obiekty (powerupy, spawnpointy, etc), podloze, wszystkie materialy i cala fizyke planszy.
 * @author marcin.kanclerz
 */
 #pragma once
@@ -16,28 +18,25 @@ class InitWorld;
 
 typedef boost::shared_ptr<InitWorld> InitWorldPtr;
 
-/**
-* Abstrakcyjna klasa sluzaca, do opisu poczatkowego stanu sceny.
-* Opisuje obiekty (powerupy, spawnpointy, etc), podloze, wszystkie materialy i cala fizyke planszy.
-*/
+
 class InitWorld
 {
 public:
   InitWorld(OgreRootPtr o, OgreRenderWindowPtr w);
   ~InitWorld();
 
-  // Opisuje swiat fizyczny. Musi utworzyc swiat Bulleta.
+  /** Opisuje swiat fizyczny. Musi utworzyc swiat Bulleta. */
   virtual void describeBulletWorld() = 0;
 
-  // Opisuje swiat graficzny. Musi zdefiniowac menadzera sceny oraz kamere.
+  /** Opisuje swiat graficzny. Musi zdefiniowac menadzera sceny oraz kamere. */
   virtual void describeOgreWorld() = 0;
 
-  // Opisuje wszystkie dynamiczne elementy swiata - dodaje je.
+  /** Opisuje wszystkie dynamiczne elementy swiata - dodaje je. */
   virtual void describeElements() = 0;
 
   void attachCamera(OgreCameraPtr cam, Ogre::SceneNode *node);
   
-  // Gettery i settery.
+  /** Gettery i settery. */
   OgreRootPtr getOgWorld() { return ogWorld; }
   OgreRenderWindowPtr getOgWindow() { return ogWindow; }
   OgreSceneManagerPtr getOgSceneManager() { return sceneManager; }
@@ -55,9 +54,9 @@ protected:
   OgreRenderWindowPtr ogWindow;
   World parserWorld;
   
-  // Lista elementow dynamicznych znajdujacych sie w danym swiecie
+  /** Lista elementow dynamicznych znajdujacych sie w danym swiecie */
   ElementDequePtr elementsDeque;
 
-  // Dodaje element do swiata.
+  /** Dodaje element do swiata. */
   virtual void addElement(WorldElementPtr we);
 };

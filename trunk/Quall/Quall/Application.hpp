@@ -1,4 +1,5 @@
 /**
+ * Glowna klasa aplikacji opisujaca logike programu.
  * @author marcin.kanclerz
  */
 #pragma once
@@ -16,16 +17,14 @@
 #include "Description.hpp"
 #include "WorldManager.hpp"
 
-/**
- * Glowna klasa aplikacji opisujaca logike programu.
- */
+
 class Application
 {
 public:
   Application();
   ~Application();
   
-  // Uruchomienie aplikacji
+  /** Uruchomienie aplikacji */
   void go();
   
 private:

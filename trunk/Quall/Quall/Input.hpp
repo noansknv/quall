@@ -1,4 +1,5 @@
 /**
+* Glowna klasa odpowiedzialna za input gry.
 * @author Pawel Kozlowski
 */
 #pragma once
@@ -33,14 +34,17 @@ public:
   ~InputHandler();
 
   void setWindowExtents(int width, int height);
+  /** Zlapanie odpowiednich eventow - u nas: klawiatury i myszki. */
   void capture();
 
-  // MouseListener
+  /** Event poruszenia mysza. */
   bool mouseMoved(const OIS::MouseEvent &evt);
+  /** Event wcisniecia przycisku myszy */
   bool mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID);
   bool mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID);
 
-  // KeyListener
+  /** Event wcisniecia przycisku klawiatury. */
   bool keyPressed(const OIS::KeyEvent &evt);
+  /** Event puszczenia przycisku klawiatury. */
   bool keyReleased(const OIS::KeyEvent &evt);
 };

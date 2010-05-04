@@ -1,5 +1,7 @@
-/*!
- * Author: Czubek i Filip
+/**
+ * Ta klasa sluzy do przerabiania plikow w formacie xml w obiekty c++.
+ * Poszczegolne funkcje prywatne tworza odpowiadajace im obiekty.
+ * @author piotr.czubak filip.mazowiecki
  */
 #pragma once
 
@@ -7,17 +9,14 @@
 #include "tinystr.h"
 #include "obiekty.hpp"
 
-/*!
- * Ta klasa sluzy do przerabiania plików w formacie xml w obiekty c++
- * Ka¿da prywatna metoda s³u¿y do tworzenia pewnych obiektów, natomiast
- * metoda getWorld tworzy ca³y œwiat.
- */
+
 class Parser
 {
 public:
 	Parser(string file_);
 	
 	void readFile();
+	/** Tworzy caly swiat na podstawie opisu. */
 	World getWorld();
 
 	string file;

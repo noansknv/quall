@@ -46,7 +46,7 @@ void Application::createOgreRoot()
 
 /**
 * Ustawienie systemu wyswietlania dla Ogra.
-* Tymczasowo (?) zakodowany na twardo OpenGL.
+* Korzystamy z OpenGL.
 */
 void Application::setupOgreRenderSystem()
 {
@@ -92,7 +92,6 @@ void Application::initializeOgreResourceGroups()
 
 /**
 * Utworzenie okna do wyswietlania.
-* Tymczasowo (?) hardkodowane.
 */
 void Application::createOgreRenderWindow()
 {
