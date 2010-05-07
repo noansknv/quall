@@ -1,9 +1,5 @@
 #summary Opis konfiguracji workspace'a, żeby ładnie się wszystko kompilowało.
 
-= Introduction =
-
-Żebyście nie musieli zmarnować tyle czasu co ja po tak długiej przerwie od naszej... ekhm... pracy licencjackiej :)
-
 
 = Details =
 
