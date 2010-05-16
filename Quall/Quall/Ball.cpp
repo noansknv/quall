@@ -1,7 +1,12 @@
 #include "ball.hpp"
 
 Ball::Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::Vector3 fin)
-: start(pos), stop(fin), ball_material(material), wysLew(0), opada(false), WorldElement(o, b, s, pos, camera)
+: name("ball"), main(true), start(pos), stop(fin), ball_material(material), wysLew(0), opada(false), WorldElement(o, b, s, pos, camera)
+{
+}
+
+Ball::Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::String b_name)
+: name(b_name), main(false), start(pos), ball_material(material), WorldElement(o, b, s, pos, camera)
 {
 }
 
@@ -10,10 +15,14 @@ Ball::Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vec
  */
 void Ball::describeOgreElement()
 {
-  Ogre::Entity* ent = sceneManager->createEntity("ballmesh", "ball.mesh");
+  Ogre::String b_name = "ballmesh";
+  if (!main) b_name = name;
+  Ogre::Entity* ent = sceneManager->createEntity(b_name, "ball.mesh");
   ent->setCastShadows(true);
   ent->setMaterialName(ball_material);
-  node = sceneManager->getRootSceneNode()->createChildSceneNode("ball");
+  b_name = "ball";
+  if (!main) b_name = name;
+  node = sceneManager->getRootSceneNode()->createChildSceneNode(b_name);
   node->setPosition(position);
   nodeLew = node->createChildSceneNode();
   nodeLew->attachObject(ent);
@@ -35,11 +44,15 @@ void Ball::describeBulletElement()
   btWorld->addRigidBody(fallRigidBody);
 }
 
+void Ball::oneStep_enemy()
+{
+}
+
 
 /**
  * Obsluga paru ciekawych ficzerow glownego bohatera, m.in. animacji lewitacji czy faktycznego poruszania sie.
  */
-void Ball::oneStep()
+void Ball::oneStep_main()
 {
   btTransform trans;
   fallRigidBody->getMotionState()->getWorldTransform(trans);
@@ -90,6 +103,14 @@ void Ball::oneStep()
   //btVector3 old = fallRigidBody->getLinearVelocity();
   fallRigidBody->setLinearVelocity(up * magnitude + btVector3(0, old.getY(), 0));
 
+}
+
+void Ball::oneStep()
+{
+	if (main)
+		oneStep_main();
+	else
+		oneStep_enemy();
 }
 
 void Ball::setDirectionX(Ogre::Real x)

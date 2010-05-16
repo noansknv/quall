@@ -1,7 +1,9 @@
 <?xml version="1.0" ?>
 <world x="300.0" y="340.0" z="50.0" floor="Quall/Floor" ball="Quall/Ball">
-<spawn x="190.0" y = "20.0" z ="5.0"/>
-<spawn x="150.0" y = "340.0" z ="0.0"/>
+<spawn x="190.0" y = "20.0" z ="5.0" type = "start"/>
+<spawn x="150.0" y = "340.0" z ="0.0" type = "koniec"/>
+<spawn x="190.0" y = "40.0" z ="5.0" type = "lamus"/>
+<spawn x="190.0" y = "60.0" z ="5.0" type = "lamus"/>
 
   <!-- promien kulki - 5, srodek kulki sie znajduje w odleglosci 5 od scian.-->
   <!-- cube to 2 wierzcholki: front-bottom-left back-top-right-->

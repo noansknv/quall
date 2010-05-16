@@ -182,4 +182,20 @@ void Description::describeElements()
   addElement(ball);
   // ustawiamy kuleczke jako glowna postac gry
   mainCharacter = ball;
+
+  int i = 1;
+  Ogre::String ball_name;
+  for (i = 1; (i+1) < parserWorld.spawnPoints.size(); i++)
+  {
+	  char *str = new char[5];
+	  sprintf(str, "%d", i);
+	  Ogre::String id(str);
+	  ball_name = "ball" + id;
+	  p = parserWorld.spawnPoints[i+1].p;
+	  pos.x = p.x;
+	  pos.y = p.y;
+	  pos.z = (-1) * p.z;
+	  ball.reset(new Ball(ogWorld, btWorld, sceneManager, pos, camera, parserWorld.ball, ball_name));
+	  addElement(ball);
+  }
 }
