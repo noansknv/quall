@@ -19,7 +19,10 @@ void Ball::describeOgreElement()
   if (!main) b_name = name;
   Ogre::Entity* ent = sceneManager->createEntity(b_name, "ball.mesh");
   ent->setCastShadows(true);
-  ent->setMaterialName(ball_material);
+  if (main)
+	  ent->setMaterialName(ball_material);
+  else
+	  ent->setMaterialName("Quall/Enemy");
   b_name = "ball";
   if (!main) b_name = name;
   node = sceneManager->getRootSceneNode()->createChildSceneNode(b_name);
