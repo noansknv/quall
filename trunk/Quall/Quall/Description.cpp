@@ -71,6 +71,7 @@ void Description::describeOgreWorld()
   camera->setAspectRatio((Ogre::Real)1.333333);
   Ogre::Viewport* vp = ogWindow->addViewport(camera.get());
   vp->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
+  sceneManager->setSkyBox(true, "Examples/SpaceSkyBox", 10);
 
   // swiatlo i cienie
   sceneManager->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
