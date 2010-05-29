@@ -45,7 +45,18 @@ bool InputHandler::mouseMoved(const OIS::MouseEvent &evt)
 {
   Ogre::Real mRotate = 0.13;
   worldMgr->getCamera()->getParentSceneNode()->yaw(Ogre::Degree(-mRotate * evt.state.X.rel), Ogre::Node::TS_WORLD);
-  worldMgr->getCamera()->getParentSceneNode()->pitch(Ogre::Degree(-mRotate * evt.state.Y.rel), Ogre::Node::TS_LOCAL);
+  
+  Ogre::Radian originalPitch = worldMgr->getCamera()->getParentSceneNode()->getOrientation().getPitch();
+  Ogre::Radian newPitch(Ogre::Degree(-mRotate * evt.state.Y.rel).valueRadians() + originalPitch.valueRadians());
+
+  //char orig[20], newp[20];
+  //sprintf(orig, "%f", Ogre::Radian(Ogre::Math::PI/2).valueRadians());
+  //sprintf(newp, "%f", newPitch.valueRadians());
+  //MessageBoxA(NULL, newp, orig, MB_OK);
+  if (newPitch < Ogre::Radian(-0.1) && newPitch > Ogre::Radian(- 1.0))
+  {
+    worldMgr->getCamera()->getParentSceneNode()->pitch(Ogre::Degree(-mRotate * evt.state.Y.rel), Ogre::Node::TS_LOCAL);        
+  }
   return true;
 }
 
