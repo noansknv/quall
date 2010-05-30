@@ -99,9 +99,51 @@ World Parser::getWorld()
 			//res.addCupe(c);
 			res.cubes.push_back(c);
 		}
+		else if (node.compare("meshy") == 0)
+		{
+			Mesh mm;
+			mm = parseMesh(pElem);
+			res.meshes.push_back(mm);			
+		}
 		else 
 			cout << "Unknown node in file " << file << endl;
 	}
+
+	return res;
+};
+
+Mesh Parser::parseMesh(TiXmlElement* pElem)
+{
+	TiXmlAttribute* pAttrib = pElem->FirstAttribute();
+	Mesh res;
+	Point p;
+	int i = 0;
+
+	while(pAttrib) {
+		string a(pAttrib->Name());
+		transform(a.begin(), a.end(), a.begin(), tolower);
+		
+		if (a.compare("x") == 0)
+			p.x = (float)atof(pAttrib->Value());
+		else if (a.compare("y") == 0)
+			p.z = (float)atof(pAttrib->Value());
+		else if (a.compare("z") == 0)
+			p.y = (float)atof(pAttrib->Value());
+		else if (a.compare("mesh") == 0)
+			res.mesh_name = pAttrib->Value();
+		else if (a.compare("material") == 0)
+			res.material_name = pAttrib->Value();
+		else
+			cout << "Unknown attribute in Spawn" << endl;
+
+		pAttrib = pAttrib->Next();
+		i++;
+	}
+
+	if (i != 5)
+		cout << "Wrong amount of attributes in Spawn" << endl;
+
+	res.p = p;
 
 	return res;
 };
