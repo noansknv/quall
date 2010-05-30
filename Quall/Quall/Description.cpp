@@ -226,4 +226,27 @@ void Description::describeElements()
 	  ball.reset(new Ball(ogWorld, btWorld, sceneManager, pos, camera, parserWorld.ball, ball_name));
 	  addElement(ball);
   }
+
+  Ogre::Entity *ent;
+
+  for (i = 0; i < parserWorld.meshes.size(); i++)
+  {
+	Ogre::SceneNode *node;
+
+	char *str = new char[5];
+	sprintf(str, "%d", i);
+	Ogre::String id(str);
+	ball_name = "meshek" + id;
+	ent = sceneManager->createEntity(ball_name, parserWorld.meshes[i].mesh_name);
+	ent->setMaterialName(parserWorld.meshes[i].material_name);
+	ent->setCastShadows(true);
+	
+	Ogre::Vector3 position(parserWorld.meshes[i].p.x, parserWorld.meshes[i].p.y, (-1) * parserWorld.meshes[i].p.z);
+
+	node = sceneManager->getRootSceneNode()->createChildSceneNode(ball_name);
+	node->setPosition(position);
+	Ogre::SceneNode* nodeLew = node->createChildSceneNode();
+	nodeLew->attachObject(ent);
+  }
+
 }
