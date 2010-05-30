@@ -54,6 +54,12 @@ public:
 
   Ogre::SceneNode* getOgNode() { return node; }
 
+  // -1 w tej tablicy symbolizuje sciane
+  int plansza[15][17];
+
+  /** Uchwyt elementu w ogrze. */
+  Ogre::SceneNode *node;
+
 protected:
   OgreRootPtr ogWorld;
   OgreSceneManagerPtr sceneManager;
@@ -62,9 +68,6 @@ protected:
 
   /** Uchwyt elementu w bullecie. */
   btRigidBody* fallRigidBody;
-
-  /** Uchwyt elementu w ogrze. */
-  Ogre::SceneNode *node;
 
   /** Punkt startowy pojawienia sie elementu. */
   Ogre::Vector3 position;
