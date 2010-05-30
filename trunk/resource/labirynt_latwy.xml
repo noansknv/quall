@@ -5,6 +5,9 @@
 <spawn x="190.0" y = "40.0" z ="5.0" type = "lamus"/>
 <spawn x="190.0" y = "60.0" z ="5.0" type = "lamus"/>
 
+<meshy x="1" y="1" z="1" mesh="jakis">
+<meshy x="2" y="2" z="2" mesh="jakis_drugi">
+
   <!-- promien kulki - 5, srodek kulki sie znajduje w odleglosci 5 od scian.-->
   <!-- cube to 2 wierzcholki: front-bottom-left back-top-right-->
   <!-- ogrodzenie-->
@@ -37,19 +40,19 @@
     <weight>0</weight>
   </cube>
   
-  <cube x1="300.0" y1="320.0" z1="0.0" x2="280.0" y2="0.0" z2="20.0">
+  <cube x1="280.0" y1="0.0" z1="0.0" x2="300.0" y2="320.0" z2="20.0">
 	<texture>Quall/Bush</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
 
-  <cube x1="280.0" y1="20.0" z1="0.0" x2="200.0" y2="0.0" z2="20.0">
+  <cube x1="200.0" y1="0.0" z1="0.0" x2="280.0" y2="20.0" z2="20.0">
 	<texture>Quall/Bush</texture>
     <material>solid</material>
     <weight>0</weight>
   </cube>
   
-  <cube x1="180.0" y1="20.0" z1="0.0" x2="20.0" y2="0.0" z2="20.0">
+  <cube x1="20.0" y1="0.0" z1="0.0" x2="180.0" y2="20.0" z2="20.0">
 	<texture>Quall/Bush</texture>
     <material>solid</material>
     <weight>0</weight>
