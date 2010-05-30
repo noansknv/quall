@@ -22,7 +22,7 @@ public:
 	string file;
 private:
 	Spawn parseSpawn(TiXmlElement* pElem);
-	Cube parseCube(TiXmlElement* pElem);
+	Cube parseCube(TiXmlElement* pElem, bool do_tablicy, World *wrld);
 
 	TiXmlDocument doc;
 	vector<string> names;

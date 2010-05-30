@@ -37,6 +37,7 @@ public:
     vector<Spawn> spawnPoints;
 	string floor;
 	string ball;
+	bool tab[15][17];
 	void addSpawn(Spawn s) { };
 	void addCube(Cube s) { };
 };

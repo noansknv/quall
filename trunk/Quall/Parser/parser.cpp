@@ -43,6 +43,13 @@ World Parser::getWorld()
 	
 	World res;
 
+	int ii, jj;
+	int tablicowe = 0;
+
+	for (ii = 0; ii<15; ii++)
+		for (jj = 0; jj<17; jj++)
+			res.tab[ii][jj] = true;
+
 	TiXmlAttribute* pAttrib = pElem->FirstAttribute();
 	int i = 0;
 
@@ -86,8 +93,9 @@ World Parser::getWorld()
 		}
 		else if (node.compare("cube") == 0)
 		{
+			tablicowe++;
 			Cube c;
-			c = parseCube(pElem);
+			c = parseCube(pElem, (tablicowe>2), &res);
 			//res.addCupe(c);
 			res.cubes.push_back(c);
 		}
@@ -131,7 +139,7 @@ Spawn Parser::parseSpawn(TiXmlElement* pElem)
 	return res;
 };
 
-Cube Parser::parseCube(TiXmlElement* pElem)
+Cube Parser::parseCube(TiXmlElement* pElem, bool do_tablicy, World *wrld)
 {
 	TiXmlAttribute* pAttrib = pElem->FirstAttribute();
 	Cube res;
@@ -166,6 +174,16 @@ Cube Parser::parseCube(TiXmlElement* pElem)
 	
 	res.p1 = p1;
 	res.p2 = p2;
+
+	int ii, jj;
+
+	if (do_tablicy)
+	{
+		for (ii = 0; ii<15; ii++)
+			for (jj = 0; jj<17; jj++)
+				if ((p1.x <= (float)(ii*20) ) && (p2.x > (float)(ii*20)) && (p1.z <= (float)(jj*20)) && (p2.z > (float)(jj*20)))
+					wrld->tab[ii][jj] = false;
+	}
 
 	TiXmlHandle hRoot(0);
 	hRoot = TiXmlHandle(pElem);
