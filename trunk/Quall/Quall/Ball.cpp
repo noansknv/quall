@@ -1,13 +1,104 @@
 #include "ball.hpp"
 
 Ball::Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::Vector3 fin, Simulation *sim)
-: ssim(sim), name("ball"), main(true), start(pos), stop(fin), ball_material(material), wysLew(0), opada(false), WorldElement(o, b, s, pos, camera)
+: ssim(sim), name("ball"), iloscKlatek(0), main(true), start(pos), stop(fin), ball_material(material), wysLew(0), opada(false), WorldElement(o, b, s, pos, camera)
+{
+	mainCharacter = this;
+    for (int i = 0; i < 15; i++)
+		for (int j = 0; j < 17; j++)
+			plansza[i][j] = 0;
+}
+
+Ball::Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::String b_name, WorldElement *pMain)
+: name(b_name), main(false), iloscKlatek(0), start(pos), ball_material(material), WorldElement(o, b, s, pos, camera), mainCharacter(pMain)
 {
 }
 
-Ball::Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::String b_name)
-: name(b_name), main(false), start(pos), ball_material(material), WorldElement(o, b, s, pos, camera)
+void Ball::wyzerujPlansze()
 {
+	for (int i = 0; i < 15; i++)
+		for (int j = 0; j < 17; j++)
+			if (plansza[i][j] != -1)
+				plansza[i][j] = 0;
+}
+// pole z glownym bohaterem bedzie rowne 1 i potem im dalej tym wiekszy numerek
+void Ball::przeliczPlansze()
+{
+	wyzerujPlansze();
+	Ogre::Vector3 pos = node->getPosition();
+	int x = ((int)pos.x) / 20;
+	int z = ((int)(-1 * pos.z)) / 20;
+    plansza[x][z] = 1;
+	oznaczSasiadow(x, z);
+}
+
+void Ball::oznaczSasiadow(int x, int z)
+{
+	// dolny sasiad
+	if (z > 0)
+		if (plansza[x][z - 1] == 0 || plansza[x][z - 1] > plansza[x][z] + 1)
+		{
+			plansza[x][z - 1] = plansza[x][z] + 1;
+			oznaczSasiadow(x, z - 1);
+		}
+	// gorny sasiad
+	if (z < 16)
+		if (plansza[x][z + 1] == 0 || plansza[x][z + 1] > plansza[x][z] + 1)
+		{
+			plansza[x][z + 1] = plansza[x][z] + 1;
+			oznaczSasiadow(x, z + 1);
+		}
+	// lewy sasiad
+	if (x > 0)
+		if (plansza[x - 1][z] == 0 || plansza[x - 1][z] > plansza[x][z] + 1)
+		{
+			plansza[x - 1][z] = plansza[x][z] + 1;
+			oznaczSasiadow(x - 1, z);
+		}
+	// prawy sasiad
+	if (x < 14)
+		if (plansza[x + 1][z] == 0 || plansza[x + 1][z] > plansza[x][z] + 1)
+		{
+			plansza[x + 1][z] = plansza[x][z] + 1;
+			oznaczSasiadow(x + 1, z);
+		}
+}
+
+Ogre::Vector3 Ball::AI()
+{
+	/*Ogre::Vector3 pos = node->getPosition();
+	int x = ((int)pos.x) / 20;
+	int z = ((int)(-1 * pos.z)) / 20;
+	if (mainCharacter->plansza[x][y] == 1)*/
+		return mainCharacter->node->getPosition();
+	// dolny sasiad
+	//if (z > 0)
+	//	if (plansza[x][z - 1] == 0 || plansza[x][z - 1] > plansza[x][z] + 1)
+	//	{
+	//		plansza[x][z - 1] = plansza[x][z] + 1;
+	//		oznaczSasiadow(x, z - 1);
+	//	}
+	//// gorny sasiad
+	//if (z < 16)
+	//	if (plansza[x][z + 1] == 0 || plansza[x][z + 1] > plansza[x][z] + 1)
+	//	{
+	//		plansza[x][z + 1] = plansza[x][z] + 1;
+	//		oznaczSasiadow(x, z + 1);
+	//	}
+	//// lewy sasiad
+	//if (x > 0)
+	//	if (plansza[x - 1][z] == 0 || plansza[x - 1][z] > plansza[x][z] + 1)
+	//	{
+	//		plansza[x - 1][z] = plansza[x][z] + 1;
+	//		oznaczSasiadow(x - 1, z);
+	//	}
+	//// prawy sasiad
+	//if (x < 14)
+	//	if (plansza[x + 1][z] == 0 || plansza[x + 1][z] > plansza[x][z] + 1)
+	//	{
+	//		plansza[x + 1][z] = plansza[x][z] + 1;
+	//		oznaczSasiadow(x + 1, z);
+	//	}
 }
 
 /**
@@ -61,6 +152,12 @@ void Ball::oneStep_enemy()
  */
 void Ball::oneStep_main()
 {
+  if (iloscKlatek++ == 30)
+  {
+	iloscKlatek = 0;
+	przeliczPlansze();
+	this->plansza;
+  }
   btTransform trans;
   fallRigidBody->getMotionState()->getWorldTransform(trans);
 

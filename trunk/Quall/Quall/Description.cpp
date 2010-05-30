@@ -207,6 +207,14 @@ void Description::describeElements()
   Ogre::Vector3 pos(p.x, p.y, -1 * p.z);
   Ogre::Vector3 fin(p2.x, p2.y, -1 * p2.z);
   ball.reset(new Ball(ogWorld, btWorld, sceneManager, pos, camera, parserWorld.ball, fin, ssim));
+  for (int x = 0; x < 15; ++x)
+	  for (int z = 0; z < 17; ++z)
+	  {
+		  if (parserWorld.tab[x][z])
+			ball->plansza[x][z] = 0;
+		  else
+			  ball->plansza[x][z] = -1;
+	  }
   addElement(ball);
   // ustawiamy kuleczke jako glowna postac gry
   mainCharacter = ball;
@@ -223,7 +231,7 @@ void Description::describeElements()
 	  pos.x = p.x;
 	  pos.y = p.y;
 	  pos.z = (-1) * p.z;
-	  ball.reset(new Ball(ogWorld, btWorld, sceneManager, pos, camera, parserWorld.ball, ball_name));
+	  ball.reset(new Ball(ogWorld, btWorld, sceneManager, pos, camera, parserWorld.ball, ball_name, mainCharacter.get()));
 	  addElement(ball);
   }
 

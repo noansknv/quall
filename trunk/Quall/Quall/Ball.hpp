@@ -15,7 +15,7 @@ class Ball : public WorldElement
 {
 public:
   Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::Vector3 fin, Simulation *sim);
-  Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::String b_name);
+  Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::String b_name, WorldElement *pMain);
   void describeOgreElement();
   void describeBulletElement();
   void oneStep();
@@ -26,7 +26,13 @@ public:
   void jump();
   bool canJump();
   bool main;
+  WorldElement *mainCharacter;
 private:
+  int iloscKlatek;
+  void wyzerujPlansze();
+  void przeliczPlansze();
+  void oznaczSasiadow(int x, int z);
+  Ogre::Vector3 AI();
   Simulation *ssim;
   Ogre::Real wysLew;
   Ogre::String ball_material;
