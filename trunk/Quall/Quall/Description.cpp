@@ -156,6 +156,33 @@ void Description::describeBulletWorld() {
       btWorld->addRigidBody(cubeRigidBody);
   }
 
+  int i = 1;
+  //Ogre::String ball_name;
+  for (i = 1; (i+1) < parserWorld.spawnPoints.size(); i++)
+  {
+	  //char *str = new char[5];
+	  //sprintf(str, "%d", i);
+	  //Ogre::String id(str);
+	  //ball_name = "ball" + id;
+	  Point p = parserWorld.spawnPoints[i+1].p;
+      btCollisionShape* fallShape = new btSphereShape(0.65);
+
+    btDefaultMotionState* fallMotionState =
+        new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(p.x, p.y, p.z)));
+    btScalar mass = 20;
+    btVector3 fallInertia(0,0,0);
+    fallShape->calculateLocalInertia(mass,fallInertia);
+    btRigidBody::btRigidBodyConstructionInfo fallRigidBodyCI(mass,fallMotionState,fallShape,fallInertia);
+    btRigidBody* fallRigidBody = new btRigidBody(fallRigidBodyCI);
+//  fallRigidBody->setMassProps(mass, fallInertia);
+    btWorld->addRigidBody(fallRigidBody);
+	  //pos.x = p.x;
+	  //pos.y = p.y;
+	  //pos.z = (-1) * p.z;
+	 // ball.reset(new Ball(ogWorld, btWorld, sceneManager, pos, camera, parserWorld.ball, ball_name));
+	  //addElement(ball);
+  }
+
   /*btVector3 v(5, 5, 5);
 
   btCollisionShape* cubeShape = new btBoxShape(v);
