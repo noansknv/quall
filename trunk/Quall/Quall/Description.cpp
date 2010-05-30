@@ -125,7 +125,7 @@ void Description::describeBulletWorld() {
   //BtDiscreteWorldPtr 
   btWorld.reset(new btDiscreteDynamicsWorld(dispatcher,broadphase,solver,collisionConfiguration));
 
-  btWorld->setGravity(btVector3(0,-10,0));
+  btWorld->setGravity(btVector3(0,-30,0));
 
   //plaszczyzna
   btCollisionShape* groundShape = new btStaticPlaneShape(btVector3(0,1,0),1);

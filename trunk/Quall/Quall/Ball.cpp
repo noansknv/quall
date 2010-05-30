@@ -71,7 +71,7 @@ void Ball::oneStep_main()
   // pomocne przy animacji lewitacji
   if (opada && wysLew >= 0.01)
     wysLew -= 0.01;
-  else if (!opada && wysLew <= 1)
+  else if (!opada && wysLew <= 0.4)
 	  wysLew += 0.01;
   else
     if (opada)
@@ -105,7 +105,13 @@ void Ball::oneStep_main()
   up += up2;
   btScalar magnitude = (btScalar(1.0)/fallRigidBody->getInvMass()) * btScalar(1.0);
   //btVector3 old = fallRigidBody->getLinearVelocity();
-  fallRigidBody->setLinearVelocity(up * magnitude + btVector3(0, old.getY(), 0));
+  if (canJump())
+      fallRigidBody->setLinearVelocity(up * magnitude + btVector3(0, old.getY(), 0));
+  if (!canJump()) {
+      //setDirectionX(0);
+      //setDirectionZ(0);
+      fallRigidBody->setLinearVelocity(btVector3(old.getX(), old.getY(), old.getZ()));
+  }
 
 }
 
@@ -172,6 +178,6 @@ bool Ball::canJump()
   btTransform trans;
   fallRigidBody->getMotionState()->getWorldTransform(trans);
 
-  return trans.getOrigin().getY() <= 2;
+  return trans.getOrigin().getY() <= 1.3;
 }
 
