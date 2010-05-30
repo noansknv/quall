@@ -28,6 +28,14 @@ public:
     Point p;
 };
 
+class Mesh
+{
+public:
+	Point p;
+	string mesh_name;
+	string material_name;
+};
+
 class World
 {
 public:
@@ -35,6 +43,7 @@ public:
 	Point size;
     vector<Cube> cubes;
     vector<Spawn> spawnPoints;
+	vector<Mesh> meshes;
 	string floor;
 	string ball;
 	bool tab[15][17];

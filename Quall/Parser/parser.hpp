@@ -23,6 +23,7 @@ public:
 private:
 	Spawn parseSpawn(TiXmlElement* pElem);
 	Cube parseCube(TiXmlElement* pElem, bool do_tablicy, World *wrld);
+	Mesh parseMesh(TiXmlElement* pElem);
 
 	TiXmlDocument doc;
 	vector<string> names;
