@@ -1,6 +1,6 @@
 #include "Description.hpp"
 
-Description::Description(OgreRootPtr o, OgreRenderWindowPtr w) : InitWorld(o, w)
+Description::Description(OgreRootPtr o, OgreRenderWindowPtr w, Simulation *sim) : InitWorld(o, w), ssim(sim)
 {
 }
 
@@ -179,7 +179,7 @@ void Description::describeElements()
   Point p2 = parserWorld.spawnPoints[1].p;
   Ogre::Vector3 pos(p.x, p.y, -1 * p.z);
   Ogre::Vector3 fin(p2.x, p2.y, -1 * p2.z);
-  ball.reset(new Ball(ogWorld, btWorld, sceneManager, pos, camera, parserWorld.ball, fin));
+  ball.reset(new Ball(ogWorld, btWorld, sceneManager, pos, camera, parserWorld.ball, fin, ssim));
   addElement(ball);
   // ustawiamy kuleczke jako glowna postac gry
   mainCharacter = ball;

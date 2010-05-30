@@ -10,16 +10,18 @@
 #include "WorldElement.hpp"
 #include "Ball.hpp"
 #include "parser.hpp"
+#include "Simulation.hpp"
 
 
 class Description : public InitWorld
 {
 public:
-  Description(OgreRootPtr o, OgreRenderWindowPtr w);
+  Description(OgreRootPtr o, OgreRenderWindowPtr w, Simulation *s);
   void describeOgreWorld();
   void describeBulletWorld();
   void describeElements();
 private:
+	Simulation *ssim;
   /*
   * fbl - front bottom left vertex
   * btr - back top right vertex
