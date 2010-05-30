@@ -112,7 +112,7 @@ void Application::createOgreRenderWindow()
 */
 void Application::setupWorldManager()
 {
-  InitWorldPtr worldDesc(new Description(ogWorld, ogWindow));
+  InitWorldPtr worldDesc(new Description(ogWorld, ogWindow, sim));
   worldManager.reset(new WorldManager(worldDesc));
 }
 

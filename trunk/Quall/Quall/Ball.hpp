@@ -9,11 +9,12 @@
 #include "WorldElement.hpp"
 #include "Types.hpp"
 #include "obiekty.hpp"
+#include "Simulation.hpp"
 
 class Ball : public WorldElement
 {
 public:
-  Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::Vector3 fin);
+  Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::Vector3 fin, Simulation *sim);
   Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::String b_name);
   void describeOgreElement();
   void describeBulletElement();
@@ -26,6 +27,7 @@ public:
   bool canJump();
   bool main;
 private:
+  Simulation *ssim;
   Ogre::Real wysLew;
   Ogre::String ball_material;
   Ogre::String name;

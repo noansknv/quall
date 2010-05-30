@@ -1,7 +1,7 @@
 #include "ball.hpp"
 
-Ball::Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::Vector3 fin)
-: name("ball"), main(true), start(pos), stop(fin), ball_material(material), wysLew(0), opada(false), WorldElement(o, b, s, pos, camera)
+Ball::Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::Vector3 fin, Simulation *sim)
+: ssim(sim), name("ball"), main(true), start(pos), stop(fin), ball_material(material), wysLew(0), opada(false), WorldElement(o, b, s, pos, camera)
 {
 }
 
@@ -64,7 +64,8 @@ void Ball::oneStep_main()
 
   if (posit.squaredDistance(stop) <= 100)
   {
-
+     MessageBoxA(NULL, "Aby zakoñczyæ grê kliknij ok", "Wygra³eœ, hurra!", MB_OK);
+	 ssim->requestStateChange(SHUTDOWN);
   }
 
   // pomocne przy animacji lewitacji
