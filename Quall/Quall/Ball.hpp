@@ -26,6 +26,7 @@ public:
   void jump();
   bool canJump();
   bool main;
+  //bool l;
   WorldElement *mainCharacter;
 private:
   int iloscKlatek;
