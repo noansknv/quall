@@ -64,41 +64,61 @@ void Ball::oznaczSasiadow(int x, int z)
 		}
 }
 
+Ogre::Vector3 Ball::getMiddlePosition(int x, int z)
+{
+	Ogre::Vector3 ret = Ogre::Vector3::ZERO;
+	ret.x = x * 20 + 10;
+	ret.z = -1 * (z * 20 + 10);
+	return ret;
+}
+
 Ogre::Vector3 Ball::AI()
 {
-	/*Ogre::Vector3 pos = node->getPosition();
+	Ogre::Vector3 pos = node->getPosition();
 	int x = ((int)pos.x) / 20;
 	int z = ((int)(-1 * pos.z)) / 20;
-	if (mainCharacter->plansza[x][y] == 1)*/
+	// poczatkowo musi byc wiekszy od 15 * 17
+	int tmpMax = 400;
+	Ogre::Vector3 tmpRet;
+	if (mainCharacter->plansza[x][z] == 1)
 		return mainCharacter->node->getPosition();
 	// dolny sasiad
-	//if (z > 0)
-	//	if (plansza[x][z - 1] == 0 || plansza[x][z - 1] > plansza[x][z] + 1)
-	//	{
-	//		plansza[x][z - 1] = plansza[x][z] + 1;
-	//		oznaczSasiadow(x, z - 1);
-	//	}
-	//// gorny sasiad
-	//if (z < 16)
-	//	if (plansza[x][z + 1] == 0 || plansza[x][z + 1] > plansza[x][z] + 1)
-	//	{
-	//		plansza[x][z + 1] = plansza[x][z] + 1;
-	//		oznaczSasiadow(x, z + 1);
-	//	}
-	//// lewy sasiad
-	//if (x > 0)
-	//	if (plansza[x - 1][z] == 0 || plansza[x - 1][z] > plansza[x][z] + 1)
-	//	{
-	//		plansza[x - 1][z] = plansza[x][z] + 1;
-	//		oznaczSasiadow(x - 1, z);
-	//	}
-	//// prawy sasiad
-	//if (x < 14)
-	//	if (plansza[x + 1][z] == 0 || plansza[x + 1][z] > plansza[x][z] + 1)
-	//	{
-	//		plansza[x + 1][z] = plansza[x][z] + 1;
-	//		oznaczSasiadow(x + 1, z);
-	//	}
+	if (z > 0)
+		if (mainCharacter->plansza[x][z - 1] == 1)
+			return mainCharacter->node->getPosition();
+		else if (mainCharacter->plansza[x][z - 1] > 1 && mainCharacter->plansza[x][z - 1] < tmpMax)
+		{
+			tmpMax = mainCharacter->plansza[x][z - 1];
+			tmpRet = getMiddlePosition(x, z - 1);
+		}
+	// gorny sasiad
+	if (z < 16)
+		if (mainCharacter->plansza[x][z + 1] == 1)
+			return mainCharacter->node->getPosition();
+		else if (mainCharacter->plansza[x][z + 1] > 1 && mainCharacter->plansza[x][z + 1] < tmpMax)
+		{
+			tmpMax = mainCharacter->plansza[x][z + 1];
+			tmpRet = getMiddlePosition(x, z + 1);
+		}
+	// lewy sasiad
+	if (x > 0)
+		if (mainCharacter->plansza[x - 1][z] == 1)
+			return mainCharacter->node->getPosition();
+		else if (mainCharacter->plansza[x - 1][z] > 1 && mainCharacter->plansza[x - 1][z] < tmpMax)
+		{
+			tmpMax = mainCharacter->plansza[x - 1][z];
+			tmpRet = getMiddlePosition(x - 1, z);
+		}
+	// prawy sasiad
+	if (x < 14)
+		if (mainCharacter->plansza[x + 1][z] == 1)
+			return mainCharacter->node->getPosition();
+		else if (mainCharacter->plansza[x + 1][z] > 1 && mainCharacter->plansza[x + 1][z] < tmpMax)
+		{
+			tmpMax = mainCharacter->plansza[x + 1][z];
+			tmpRet = getMiddlePosition(x + 1, z);
+		}
+	return tmpRet;
 }
 
 /**
@@ -140,6 +160,13 @@ void Ball::describeBulletElement()
 
 void Ball::oneStep_enemy()
 {
+  Ogre::Vector3 toPosition;
+  if (iloscKlatek++ == 30)
+  {
+    iloscKlatek = 0;
+	toPosition = AI();
+  }
+
   btTransform trans;
   fallRigidBody->getMotionState()->getWorldTransform(trans);
 

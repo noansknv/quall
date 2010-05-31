@@ -33,6 +33,7 @@ private:
   void przeliczPlansze();
   void oznaczSasiadow(int x, int z);
   Ogre::Vector3 AI();
+  Ogre::Vector3 getMiddlePosition(int x, int z);
   Simulation *ssim;
   Ogre::Real wysLew;
   Ogre::String ball_material;
