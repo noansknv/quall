@@ -1,4 +1,5 @@
 #include "ball.hpp"
+#include <string>
 
 Ball::Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::Vector3 fin, Simulation *sim)
 : ssim(sim), name("ball"), iloscKlatek(0), main(true), start(pos), stop(fin), ball_material(material), wysLew(0), opada(false), WorldElement(o, b, s, pos, camera)
@@ -161,13 +162,6 @@ void Ball::describeBulletElement()
 
 void Ball::oneStep_enemy()
 {
-  Ogre::Vector3 toPosition;
-  if (iloscKlatek++ == 30)
-  {
-    iloscKlatek = 0;
-	toPosition = AI();
-  }
-
   btTransform trans;
   fallRigidBody->getMotionState()->getWorldTransform(trans);
 
@@ -175,15 +169,27 @@ void Ball::oneStep_enemy()
   float z = trans.getOrigin().getZ();
   float y = trans.getOrigin().getY();
 
-  btVector3 old = fallRigidBody->getLinearVelocity();
+  Ogre::Vector3 toPosition;
+  if (iloscKlatek++ == 30)
+  {
+    iloscKlatek = 0;
+	toPosition = AI();
+
+    btVector3 old = fallRigidBody->getLinearVelocity();
+    btVector3 dir(toPosition.x - x, 0, toPosition.z - z);
+
+    dir.normalize();
+    btScalar speed = (btScalar(1.0)/fallRigidBody->getInvMass()) * btScalar(1.8);
+    dir = dir * speed;
+
+    fallRigidBody->setLinearVelocity(btVector3(dir.getX(), old.getY(), dir.getZ()));
+  }
+
+
+
+
   node->setPosition(x, y, z);
-  btVector3 dir(toPosition.x - x, 0, toPosition.z - z);
 
-  dir.normalize();
-  btScalar speed = (btScalar(1.0)/fallRigidBody->getInvMass()) * btScalar(1.8);
-  dir = dir * speed;
-
-  fallRigidBody->setLinearVelocity(btVector3(dir.getX(), old.getY(), dir.getZ()));
   //fallRigidBody->setLinearVelocity(dir);
 
   Ogre::Vector3 m = mainCharacter->node->getPosition();
