@@ -6,9 +6,9 @@
 <spawn x="190.0" y = "60.0" z ="5.0" type = "lamus"/>
 
 <meshy x="190.0" y="122.0" z="20.0" mesh="dwarf.mesh" material="Quall/Floor"/>
-<meshy x="185.0" y="40.0" z="8.0" mesh="cloud.mesh" material="Quall/Cloud"/>
-<meshy x="210.0" y="20.0" z="10.0" mesh="cloud.mesh" material="Quall/Cloud"/>
-<meshy x="190.0" y="10.0" z="10.0" mesh="cloud.mesh" material="Quall/Cloud"/>
+<meshy x="185.0" y="40.0" z="8.0" mesh="cloud.mesh" material="Quall/PinkCloud"/>
+<meshy x="210.0" y="20.0" z="10.0" mesh="cloud.mesh" material="Quall/Clouds"/>
+<meshy x="190.0" y="10.0" z="10.0" mesh="cloud.mesh" material="Quall/WhiteCloud"/>
 
   <!-- promien kulki - 5, srodek kulki sie znajduje w odleglosci 5 od scian.-->
   <!-- cube to 2 wierzcholki: front-bottom-left back-top-right-->
