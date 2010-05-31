@@ -2,8 +2,25 @@
 <world x="300.0" y="340.0" z="50.0" floor="Quall/Floor" ball="Quall/Ball">
 <spawn x="190.0" y = "20.0" z ="5.0" type = "start"/>
 <spawn x="150.0" y = "340.0" z ="0.0" type = "koniec"/>
-<spawn x="190.0" y = "40.0" z ="5.0" type = "lamus"/>
-<spawn x="190.0" y = "60.0" z ="5.0" type = "lamus"/>
+<spawn x="190.0" y = "100.0" z ="5.0" type = "lamus"/>
+<spawn x="190.0" y = "110.0" z ="5.0" type = "lamus"/>
+<spawn x="230.0" y = "40.0" z ="5.0" type = "lamus"/>
+<spawn x="235.0" y = "45.0" z ="5.0" type = "lamus"/>
+<spawn x="270.0" y = "150.0" z ="5.0" type = "lamus"/>
+<spawn x="265.0" y = "145.0" z ="5.0" type = "lamus"/>
+<spawn x="150.0" y = "170.0" z ="5.0" type = "lamus"/>
+<spawn x="145.0" y = "165.0" z ="5.0" type = "lamus"/>
+<spawn x="270.0" y = "310.0" z ="5.0" type = "lamus"/>
+<spawn x="265.0" y = "305.0" z ="5.0" type = "lamus"/>
+<spawn x="30.0" y = "50.0" z ="5.0" type = "lamus"/>
+<spawn x="25.0" y = "45.0" z ="5.0" type = "lamus"/>
+<spawn x="110.0" y = "180.0" z ="5.0" type = "lamus"/>
+<spawn x="105.0" y = "175.0" z ="5.0" type = "lamus"/>
+<spawn x="230.0" y = "260.0" z ="5.0" type = "lamus"/>
+<spawn x="225.0" y = "255.0" z ="5.0" type = "lamus"/>
+<spawn x="150.0" y = "330.0" z ="5.0" type = "lamus"/>
+<spawn x="150.0" y = "325.0" z ="5.0" type = "lamus"/>
+<spawn x="150.0" y = "320.0" z ="5.0" type = "lamus"/>
 
 <meshy x="190.0" y="122.0" z="20.0" mesh="dwarf.mesh" material="Quall/Floor"/>
 <meshy x="185.0" y="40.0" z="8.0" mesh="cloud.mesh" material="Quall/PinkCloud"/>
