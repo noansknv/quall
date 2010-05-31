@@ -57,6 +57,8 @@ public:
   // -1 w tej tablicy symbolizuje sciane
   int plansza[15][17];
 
+  bool l;
+
   /** Uchwyt elementu w ogrze. */
   Ogre::SceneNode *node;
 

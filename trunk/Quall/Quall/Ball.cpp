@@ -3,6 +3,7 @@
 Ball::Ball(OgreRootPtr o, BtDiscreteWorldPtr b, OgreSceneManagerPtr s, Ogre::Vector3 pos, OgreCameraPtr camera, Ogre::String material, Ogre::Vector3 fin, Simulation *sim)
 : ssim(sim), name("ball"), iloscKlatek(0), main(true), start(pos), stop(fin), ball_material(material), wysLew(0), opada(false), WorldElement(o, b, s, pos, camera)
 {
+    l = false;
 	mainCharacter = this;
     for (int i = 0; i < 15; i++)
 		for (int j = 0; j < 17; j++)
@@ -170,7 +171,27 @@ void Ball::oneStep_enemy()
   btTransform trans;
   fallRigidBody->getMotionState()->getWorldTransform(trans);
 
-  node->setPosition(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ());
+  float x = trans.getOrigin().getX();
+  float z = trans.getOrigin().getZ();
+  float y = trans.getOrigin().getY();
+
+  btVector3 old = fallRigidBody->getLinearVelocity();
+  node->setPosition(x, y, z);
+  btVector3 dir(toPosition.x - x, 0, toPosition.z - z);
+
+  dir.normalize();
+  btScalar speed = (btScalar(1.0)/fallRigidBody->getInvMass()) * btScalar(1.8);
+  dir = dir * speed;
+
+  fallRigidBody->setLinearVelocity(btVector3(dir.getX(), old.getY(), dir.getZ()));
+  //fallRigidBody->setLinearVelocity(dir);
+
+  Ogre::Vector3 m = mainCharacter->node->getPosition();
+  if (m.squaredDistance(node->getPosition()) <= 1.6 * 1.6 && mainCharacter->l == false) {
+  //if ((m.x - x)*(m.x - x) + (m.z - z)*(m.z - z) <= 1.5 * 1.5 && m.y <= 0.7 + 0.8) {
+        MessageBoxA(NULL, "Aby zakoñczyæ grê kliknij ok", "Przegrales!", MB_OK);
+        mainCharacter->l = true;
+  }
 }
 
 
@@ -195,6 +216,9 @@ void Ball::oneStep_main()
      MessageBoxA(NULL, "Aby zakoñczyæ grê kliknij ok", "Wygra³eœ, hurra!", MB_OK);
 	 ssim->requestStateChange(SHUTDOWN);
   }
+
+  if (l)
+      ssim->requestStateChange(SHUTDOWN);
 
   // pomocne przy animacji lewitacji
   if (opada && wysLew >= 0.01)
@@ -231,7 +255,9 @@ void Ball::oneStep_main()
   btVector3 up2(-1 * v.z, 0, v.x);
   up2 = up2 * btVector3(direction.x, 0, direction.x);
   up += up2;
-  btScalar magnitude = (btScalar(1.0)/fallRigidBody->getInvMass()) * btScalar(1.0);
+  if (up != btVector3(0, 0, 0))
+    up.normalize();
+  btScalar magnitude = (btScalar(1.0)/fallRigidBody->getInvMass()) * btScalar(1.8);
   //btVector3 old = fallRigidBody->getLinearVelocity();
   if (canJump())
       fallRigidBody->setLinearVelocity(up * magnitude + btVector3(0, old.getY(), 0));
