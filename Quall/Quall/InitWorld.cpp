@@ -16,8 +16,8 @@ InitWorld::~InitWorld() {}
 
 void InitWorld::attachCamera(OgreCameraPtr cam, Ogre::SceneNode *node)
 {
-  node->attachObject(cam.get());
-  cam->setPosition(Ogre::Vector3(0, 0, 10));
+  node->createChildSceneNode("camera")->attachObject(cam.get());
+  node->getChild("camera")->setPosition(Ogre::Vector3(0, 0, 10));
   cam->lookAt(node->getPosition());
 }
 
