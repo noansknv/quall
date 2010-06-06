@@ -5,38 +5,159 @@
 \usepackage[latin2]{inputenc}
 
 \author{Pawe³ Koz³owski}
+%czy kto¶ wie czy tu maj± byæ wszystkie imiona, czy bêd± 4 ró¿ne prace?
 
 \nralbumu{263614}
 
-\title{Quall}
+\title{Quall - trójwymiarowy labirynt z fizyk± i przeszkodami}
+\tytulang{Quall - 3D maze with obstacles}
+%tytu³u ewentualnie do poprawy
 
 \kierunek{Informatyka}
 
 \opiekun{mgr Robert Maron}
 
-\date{Maj 2010}
+\date{Czerwiec 2010}
+%mam nadzieje ¿e czerwiec
+
+\keywords{Gra komputerowa, Visual Studio, C++, Ogre, Bullet, Boost}
+\dziedzina{11.3 Informatyka}
+\klasyfikacja{K. Computing Milieux \\
+K.8 Personal Cumputing \\
+K.8.0 General}
+%tego jestem mocno niepewny jakby co: http://www.acm.org/about/class
 
 \begin{document}
 \maketitle
+
+\begin{abstract}
+ W pracy przedstawiono implementacjê projektu Quall - trójwymiarowej gry polegaj±cej na przej¶ciu labiryntu omijaj±c po drodze przeciwników.
+\end{abstract}
+
 
 \tableofcontents
 
 \chapter*{Wprowadzenie}
 \addcontentsline{toc}{chapter}{Wprowadzenie}
 
-Jakie¶ wprowadzenie.
+Gry komputerowe, które pojawi³y siê nieca³e pó³ wieku temu, s± obecnie jednym z najbardziej dochodowych produktów na rynku. Tytu³y wielu gier s± bardzo dobrze rozpoznawanymi markami na ¶wiecie. Potwierdzaj± to na przyk³ad przychody, które s± z nich s± ogromne. Gry ``Call of Duty`` i ``World of Warcraft`` potrafi³y w ci±gu roku przynie¶æ dochody powy¿ej miliarda dolarów. Wbrew panuj±cemu stereotypowi, ¿e w gry komputerowe gra zazwyczaj m³odzie¿, w Stanach Zjednoczonych szacuje siê, ¿e przeciêtny gracz ma 35 lat i gra od 12 lat.
 
-\chapter{Podsumowanie}
+Wraz z rozpowszechnieniem siê internetu powstaje wiele darmowych zazwyczaj nieskomplikowanych gier umieszczanych w sieci. Autorzy projektu chcieli zapoznaæ siê z podstawowymi technikami i dostêpnymi bibliotekami do tworzenia gry z grafik± i silnikiem fizycznym. G³ówny cel by³ taki ¿eby napisaæ jak najlepsz± grê w taki sposób aby zrozumieæ dobrze jak ona dzia³a, oraz ¿eby mo¿na by³o j± w prosty sposób udoskonalaæ w przysz³o¶ci.
 
-Podsumowanie te¿ trzeba napisaæ.
+Autorzy od wielu lat tak¿e z pasj± graj± w ró¿ne gry komputerowe, co spowodowa³o zainteresowanie tematem ich tworzenia. Niektórzy cz³onkowie zespo³u wi±¿± swoj± przysz³o¶æ z pracowaniem dla firm tworz±cych gry komputerowe, dlatego wa¿ne jest ¿eby nabraæ jakiego¶ do¶wiadczenia z podstawami, u¿ywaj±c do tego popularnych bibliotek i wygodnego ¶rodowiska.
+%ja pierdole, jak kto¶ chce polaæ wode nie dopisze co¶.
 
+\chapter{Podstawowe pojêcia}\label{r:pojecia}
+
+\section{Definicje}
+\begin{itemize}
+ \item Gracz - u¿ytkownik gry.
+ \item Kulka, Pi³ka - postaæ, która kieruje gracz.
+ \item Plansza - przestrzeñ gry, po której poruszaj± siê kulki.
+ \item Zespó³, Autorzy - Piotr Czubak, Marcin Kanclerz, Pawe³ Koz³owski, Filip Mazowiecki. 
+\end{itemize}
+
+\section{Quall}
+Celem projektu by³o stworzenie trójwymiarowej gry z silnikiem fizycznym. Gracz wciela siê w postaæ kulki, któr± musi przej¶æ labirynt w jakim siê znajduje. Podczas gry przeszkadzaj± mu inne kulki, któr± go goni±.
+
+\chapter{Podobne projekty}
+Celem projektu Quall nie by³o stworzenie czego¶ nowego, tylko nauczenie siê ogólnych technik tworzenia gier komputerowych, które mo¿naby w przysz³o¶ci wykorzystaæ. Dlatego jest mnóstwo podobnych projektów zarówno komercyjnych jak i niekomercyjnych dostepnych w sieci lub w zwyk³ych sklepach. Projekt Quall zawiera w sobie najbardziej popularne elementy innych gier, które pojawiaj± sie bardzo czêsto i ³±czy je w sobie. Trójwymiarowo¶æ, labirynt, silnik fizyczny nie s± niczym nowym, jednak nauczenie siê u¿ywania ich tak jak w innych grach daje podstawy do napisania czego¶ ciekawego w przysz³o¶ci.
+
+Przyk³adowe gry, z których Autorzy czerpali inspiracjê:
+\begin{itemize}
+ \item Pacman - stara gra, która polega na zjedzeniu wszystkich kulek z planszy poruszaj±c siê po dwuwymiarowym labiryncie. Przyk³adowo mo¿na znale¼c tê grê na tej stronie: http://www.wyspagier.pl/pacman/
+ \item 3D Super Ball - jedna z wielu darmowych gier dostêpnych w internecie, polega na tym, ¿eby trafiaæ pi³k± w odpowiednie miejsca ¿eby dostaæ punkty. \\
+ http://www.crazymonkeygames.com/3D-Super-Ball.html
+ \item Quake - jedna z pierwszych gier FPP, która posiada³a silnik graficzny umo¿liwiaj±cy wy¶wietlanie trójwymiarowego teksturowanego obrazu.
+ %ew. mozna dodaæ wiêcej przyk³adów ale wg mnie na chuj
+\end{itemize}
+
+\chapter{Opis realizacji projektu}
+Wszelkie parametry dotycz±ce wygl±du, wielko¶ci, zawarto¶ci planszy, ilo¶ci przeciwników itp. s± umieszczane w osobnym pliku xml, którego ¼ród³o jest pó¼niej wczytywane i przetwarzane. Dlatego Quall sk³ada siê z dwóch ró¿nych projektów:
+\begin{itemize}
+ \item Quall - projekt dotycz±cy samej gry,
+ \item Parser - projekt, który s³u¿y do przerabiania pliku xml na klasy w C++.
+\end{itemize}
+
+\section{¦rodowisko i biblioteki}
+Projekt jest pisany w jêzyku C++, wiêc wybrali¶my narzêdzie Microsoft Visual Studio Professional. W projekcie wykorzystujemy biblioteki Ogre, Bullet, Boost, TinyXml, OIS.
+%pomin±³em co¶?
+\subsection{Ogre}
+Ogre jest trójwymiarowym silnikiem graficznym. W naszym projekcie jest on u¿ywany do tworzenia obiektów geometrycznych, oraz obs³uge ich wy¶wietlania w tym nak³adania na nich tekstur, ustawianie cieni itp.
+\subsection{OIS}
+Jest to biblioteka, która s³u¿y do obs³ugiwania zdarzeñ wej¶cia pochodz±cych z klawiatury, myszki lub innych urz±dzeñ. W projekcie Quall umo¿liwia sterowanie Kulki przez u¿ytkownika. Gracz mo¿e siê poruszaæ, skakaæ a tak¿e obracaæ u¿ywaj±c odpowiednich przycisków klawiatury i myszki.
+\subsection{Bullet}
+Bullet jest silnikiem fizycznym, który s³u¿y do wykrywania i obs³ugi kolizji pomiêdzy obiektami na podstawie danych, które mu dostarczono lub sam wyliczy³. W projekcie Quall ta biblioteka jest u¿ywana do obs³ugi zderzeñ kulek ze ¶cianami i ze sob±.
+\subsection{Boost}
+%Marcin: nie wiem jak to napisaæ.
+\subsection{TinyXml}
+Jest do biblioteka, która umo¿liwia przerabianie plików w formacie xml na klasy w C++. Dziêki temu mo¿emy trzymaæ parametry planszy w pliku xml i przerabiaæ j± niezale¿nie od samego projektu dotycz±cego gry.
+\section{Opis komponentów}
+
+\subsection{Parser}
+Podstawowym celem podzia³ów w projekcie by³o umo¿liwienie w stosunkowo prosty sposób tworzenie nowych lub edytowanie starych plansz bez konieczno¶ci zmian w kodzie. Dlatego wszelkie dane dotycz±ce planszy zosta³y umieszczone w dodatkowym pliku xml. Dok³adny opis formatu w jakim zosta³o to zrobione znajduje siê w rozdziale \ref{r:plansza}.
+
+Projekt Parser dzia³a w ten sposób, ¿e wczytuje ca³y plik, w którym znajduje siê opisana plansza, a nastêpnie rozpoznaj±c odpowiednie parametry dotycz±ce odpowiednich obiektów przerabia je na klasy i atrybuty. Wynikiem koñcowym jest obiekt klasy World, który zawiera miêdzy innymi stos wszystkich ¶cian i punktów startowych wraz z ich danymi. Dane te zawieraj± nazwy materia³ów jakie maj± byæ na³o¿one na poszczególne obiekty, oraz nazwy plików gdzie jest opisana ich struktura geometryczna.
+
+\subsection{Silnik graficzny}
+%Pawe³: tu czê¶æ lepiej ty opisz
+
+W Ogrze nak³adanie tekstur odbywa siê za pomoc± skryptów, które nazywa siê materia³ami. S± to pliki napisane w strukturze podobnej do klas C++. Opisuj± one jakie tekstury i w jaki sposób maj± byæ na³o¿one na dany obiekt geometryczny. Mo¿na podawaæ w jakis sposób ma byæ u¿yta podana tekstura - np. czy chodzi tylko o pewien okr±g z niej do na³o¿enia tego na kulê, czy np. jest to jedna z sze¶ciu ¶cian, które bêd± na prostopad³o¶cianie. Poza tym mo¿na je nak³adaæ w kilku krokach, uzyskuj±c w ten sposób np. pod³oge która jest czêsciowo trawiasta a czêsciowa ziemnista.
+\subsection{Silnik fizyczny}
+%Czubek: enjoy ;)
+\subsection{Interfejs wej¶cia}
+%Marcin: have fun
+\subsection{Interfejs u¿ytkownika}
+Jest to czê¶æ, która pozwala na komunikacje pomiêdzy u¿ytkownikiem a gr±. W obecnej chwili w projekcie sprowadza siê to do wyskakuj±cych okienek przy zakoñczeniu gry gdzie zostaje podana odpowiednia informacja u¿ytkownikowi.
+\subsection{World Manager}
+%Marcin:eee :)
+\subsection{Sztuczna inteligencja}
+%Pawe³: pole do popisu:)
+\chapter{Dokumentacja u¿ytkowa}
+
+\section{Uruchomienie gry}
+%tu bêd± screeny
+
+\section{Tworzenie i edytowanie planszy}\label{r:plansza}
+Plik xml zawieraj±cy planszê zosta³ zaprojektowany w taki sposób, ¿eby mo¿na by³o ³atwo dodawaæ i edytowaæ obiekty, której maj± siê na niej znale¼æ. W ten sposób zosta³y wyró¿nione poszczególne elementy w nastêpuj±cy sposób:
+\begin{itemize}
+ \item cube (prostopad³o¶cian): zawieraja dwa wierzcho³ki z jego przek±tnej, które wyznaczaj± jego po³o¿enie w sposób jednoznaczny. Poza tym dodana jest nazwa materia³u, która nak³ada teksturê na ten prostopad³a¶cian.
+ \item spawn (punkt startowy): zawiera po³o¿enie w jakim znajduje siê punkt startowy, koñcowy lub miejsce gdzie zacznie przeciwnik. Poza tym parametr, wg którego Parser rozpoznaje jakiego typu spo¶ród wymienionych jest to punkt startowy.
+ \item meshy (dodatkowy obiekt geometryczny): zawiera dane dotycz±ce dodatkowych obiektów geometrycznych czyli nazwe ich materia³ów, nazwê pliku z opisem ich struktry geometrycznej i punkt po³o¿enia. W ten sposób mo¿na ³atwo dodaæ np. chmurkê.
+ \item world (¶wiat): zawiera dane, które okreslaj± wielko¶æ planszy i nazwy materia³ów na³o¿onych na pod³ogê i kulkê gracza.
+\end{itemize}
+
+\chapter{Podsumowanie i perspektywy rozwoju projektu}
+Projekt w chwili obecnej jest gr±, która polega na przej¶ciu labirytu unikaj±c przeszków w postaci goni±cych kulek. Poniewa¿ mia³ on na celu zapoznanie siê z technikami tworzenia trójwymiarowych gier by³ on pisany z my¶l± o tym ¿eby w prosty sposób mo¿na go by³o udoskonalaæ w przysz³o¶ci.
+
+Elementy, które Autorzy planuj± kiedy¶ dodaæ lub ulepszyæ to:
+\begin{itemize}
+ \item Mo¿liwo¶æ strzelania do innych kulek, oraz wprowadzenie punktów ¿ycia. Zanika³o by ono od wybranych zdarzeñ - np. oberwanie pociskiem, zderzenie z inn± kulk±, upadek z wysoko¶ci. Zdecydowanie poprawi³o by to grywalno¶æ gry Quall.
+ \item Urozmaicenie planszy oraz samej postaci kulki. Plansze mog³yby mieæ kilka poziomów, oraz ró¿nego rozmiaru wej¶cia, do których nie ka¿dy by mia³ dostêp. Kulki mog³yby byæ ró¿nych rozmiarów i je zmieniaæ w zale¿no¶ci od róznych parametrów - np. czasu lubi ilo¶ci ¿ycia.
+ \item Tryb wielu graczy. Wi±za³oby sie to z dodaniem strzelania lub przynajmniej punktów ¿ycia, ¿eby gracze mogli wzajemnie ze soba walczyæ. Wi±za³oby siê to ze stworzeniem jakiego¶ dodatkowego projektu, który by umo¿liwia³ dzia³anie serwera gdzie by³yby synchronizowane zdarzenia na planszy.
+ \item Kreator plansz. Trzymanie planszy w pliku xml jest wygodne, jednak tworzenie od pocz±tku za ka¿dy planszy w samym pliku xml jest niepraktyczne i czasoch³onne. Dlatego przydatny by³by jaki¶ graficzny kreator gdzie mo¿naby w prosty i intuicyjny narysowaæ plansze i zaznaczyæ odpowiednie rzeczy na niej.
+\end{itemize}
+
+\chapter{Wk³ad pracy poszczególnych cz³onków zespo³u}
+
+\begin{itemize}
+ \item Piotr Czubak: parser, silnik fizyczny, interfejs u¿ytkownika, pisanie dokumentacji.
+ \item Marcin Kanclerz: silnik graficzny, interfejs wej¶cia, world manager, integracja poszczególnych komponentów, pisanie dokumentacji.
+ \item Pawe³ Koz³owski: silnik graficzny, sztuczna inteligencja, pisanie dokumentacji.
+ \item Filip Mazowiecki: parser, silnik graficzny, interfejs u¿ytkownika, pisanie dokumentacji.
+ %ew. do uzupe³nienia
+\end{itemize}
+
+
+\chapter{Zawarto¶æ do³±czonej p³yty CD}
+%to chyba na pó¼niej :)
 \begin{thebibliography}{99}
 \addcontentsline{toc}{chapter}{Bibliografia}
 
-\bibitem[Bea65]{beaman} Juliusz Beaman, \textit{Morbidity of the Jolly
-    function}, Mathematica Absurdica, 117 (1965) 338--9.
-
-
+\bibitem[1]{1} Ogre, http://www.ogre3d.org/
+\bibitem[2]{2} Ogre-Wiki, http://www.ogre3d.org/wiki/
+\bibitem[3]{3} Bullet, http://bulletphysics.org
+%wpisa³em tu jakie¶ g³upie linki mo¿ecie dodaæ co¶
 \end{thebibliography}
 
 \end{document}
