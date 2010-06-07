@@ -1,6 +1,15 @@
 \documentclass[licencjacka]{pracamgr}
 
-\usepackage{polski}
+\usepackage{a4wide}
+\usepackage{t1enc}
+\usepackage[polish]{babel}
+%\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+%\usepackage{polski}
 
 \usepackage[latin2]{inputenc}
 
@@ -39,12 +48,13 @@ K.8.0 General}
 
 \chapter*{Wprowadzenie}
 \addcontentsline{toc}{chapter}{Wprowadzenie}
-
 Gry komputerowe, które pojawi³y siê nieca³e pó³ wieku temu, s± obecnie jednym z najbardziej dochodowych produktów na rynku. Tytu³y wielu gier s± bardzo dobrze rozpoznawanymi markami na ¶wiecie. Potwierdzaj± to na przyk³ad przychody, które s± z nich s± ogromne. Gry ``Call of Duty`` i ``World of Warcraft`` potrafi³y w ci±gu roku przynie¶æ dochody powy¿ej miliarda dolarów. Wbrew panuj±cemu stereotypowi, ¿e w gry komputerowe gra zazwyczaj m³odzie¿, w Stanach Zjednoczonych szacuje siê, ¿e przeciêtny gracz ma 35 lat i gra od 12 lat.
 
 Wraz z rozpowszechnieniem siê internetu powstaje wiele darmowych zazwyczaj nieskomplikowanych gier umieszczanych w sieci. Autorzy projektu chcieli zapoznaæ siê z podstawowymi technikami i dostêpnymi bibliotekami do tworzenia gry z grafik± i silnikiem fizycznym. G³ówny cel by³ taki ¿eby napisaæ jak najlepsz± grê w taki sposób aby zrozumieæ dobrze jak ona dzia³a, oraz ¿eby mo¿na by³o j± w prosty sposób udoskonalaæ w przysz³o¶ci.
 
 Autorzy od wielu lat tak¿e z pasj± graj± w ró¿ne gry komputerowe, co spowodowa³o zainteresowanie tematem ich tworzenia. Niektórzy cz³onkowie zespo³u wi±¿± swoj± przysz³o¶æ z pracowaniem dla firm tworz±cych gry komputerowe, dlatego wa¿ne jest ¿eby nabraæ jakiego¶ do¶wiadczenia z podstawami, u¿ywaj±c do tego popularnych bibliotek i wygodnego ¶rodowiska.
+
+Projekt \emph{Quall} stanowi realizacjê powy¿szych za³o¿eñ. Umo¿liwi³ on Autorom wziêcie udzia³u w pe³nym cyklu tworzenia gry: opisaniu grywalnej koncepcji rozgrywki, zdefiniowaniu poszczególnym elementów ¶wiata przedstawionego, dobraniu odpowiednich narzêdzi, zaprojektowaniu architektury i w koñcu implementacji projektu.
 %ja pierdole, jak kto¶ chce polaæ wode nie dopisze co¶.
 
 \chapter{Podstawowe pojêcia}\label{r:pojecia}
@@ -58,15 +68,15 @@ Autorzy od wielu lat tak¿e z pasj± graj± w ró¿ne gry komputerowe, co spowodowa³o
 \end{itemize}
 
 \section{Quall}
-Celem projektu by³o stworzenie trójwymiarowej gry z silnikiem fizycznym. Gracz wciela siê w postaæ kulki, któr± musi przej¶æ labirynt w jakim siê znajduje. Podczas gry przeszkadzaj± mu inne kulki, któr± go goni±.
+Celem projektu by³o stworzenie trójwymiarowej gry z silnikiem fizycznym. Gracz wciela siê w postaæ kulki, któr± musi przej¶æ labirynt w jakim siê znajduje. Podczas rozgrywki graczowi przeszkadzaj± inne kulki, któr± go goni±.
 
 \chapter{Podobne projekty}
 Celem projektu Quall nie by³o stworzenie czego¶ nowego, tylko nauczenie siê ogólnych technik tworzenia gier komputerowych, które mo¿naby w przysz³o¶ci wykorzystaæ. Dlatego jest mnóstwo podobnych projektów zarówno komercyjnych jak i niekomercyjnych dostepnych w sieci lub w zwyk³ych sklepach. Projekt Quall zawiera w sobie najbardziej popularne elementy innych gier, które pojawiaj± sie bardzo czêsto i ³±czy je w sobie. Trójwymiarowo¶æ, labirynt, silnik fizyczny nie s± niczym nowym, jednak nauczenie siê u¿ywania ich tak jak w innych grach daje podstawy do napisania czego¶ ciekawego w przysz³o¶ci.
 
 Przyk³adowe gry, z których Autorzy czerpali inspiracjê:
 \begin{itemize}
- \item Pacman - stara gra, która polega na zjedzeniu wszystkich kulek z planszy poruszaj±c siê po dwuwymiarowym labiryncie. Przyk³adowo mo¿na znale¼c tê grê na tej stronie: http://www.wyspagier.pl/pacman/
- \item 3D Super Ball - jedna z wielu darmowych gier dostêpnych w internecie, polega na tym, ¿eby trafiaæ pi³k± w odpowiednie miejsca ¿eby dostaæ punkty. \\
+ \item Pacman - klasyczna gra polegaj±ca na zjedzeniu wszystkich kulek z planszy--labiryntu. Przyk³adowa implementacja: http://www.wyspagier.pl/pacman/
+ \item 3D Super Ball - jedna z wielu darmowych gier dostêpnych w internecie, polegaj±ca na trafianiu pi³k± w odpowiednie, punktowane miejsca. \\
  http://www.crazymonkeygames.com/3D-Super-Ball.html
  \item Quake - jedna z pierwszych gier FPP, która posiada³a silnik graficzny umo¿liwiaj±cy wy¶wietlanie trójwymiarowego teksturowanego obrazu.
  %ew. mozna dodaæ wiêcej przyk³adów ale wg mnie na chuj
@@ -89,7 +99,7 @@ Jest to biblioteka, która s³u¿y do obs³ugiwania zdarzeñ wej¶cia pochodz±cych z k
 \subsection{Bullet}
 Bullet jest silnikiem fizycznym, który s³u¿y do wykrywania i obs³ugi kolizji pomiêdzy obiektami na podstawie danych, które mu dostarczono lub sam wyliczy³. W projekcie Quall ta biblioteka jest u¿ywana do obs³ugi zderzeñ kulek ze ¶cianami i ze sob±.
 \subsection{Boost}
-%Marcin: nie wiem jak to napisaæ.
+Biblioteka rozszerzaj±ca mo¿liwo¶ci jêzyka C++. G³ównym jej zastosowaniem w niniejszym projekcie jest obs³uga pamiêci (inteligentne wska¼niki).
 \subsection{TinyXml}
 Jest do biblioteka, która umo¿liwia przerabianie plików w formacie xml na klasy w C++. Dziêki temu mo¿emy trzymaæ parametry planszy w pliku xml i przerabiaæ j± niezale¿nie od samego projektu dotycz±cego gry.
 \section{Opis komponentów}
@@ -106,11 +116,21 @@ W Ogrze nak³adanie tekstur odbywa siê za pomoc± skryptów, które nazywa siê mater
 \subsection{Silnik fizyczny}
 %Czubek: enjoy ;)
 \subsection{Interfejs wej¶cia}
-%Marcin: have fun
+\emph{Quall} obs³ugiwany jest w szczególno¶ci za pomoc±:
+\begin{itemize}
+\item ruchów myszki -- sterowanie kamer±
+\item klawiszy W, S, A, D -- poruszanie postaci± po planszy wzglêdem aktualnego ustawienia kamery
+\item klawisza spacja -- skakanie g³ównym bohaterem
+\end{itemize}
+Zdarzenia ``wej¶cia`` generowane s± poprzez przerwania klawiatury oraz myszki. Przerwania obs³ugiwane s± poprzez funkcje--uchwyty (handlery) i w zale¿no¶ci od zdarzenia b±d¼ do g³ównego bohatera przyk³adana jest odpowiednia si³a przeliczana przez silnik fizyczny (poruszanie siê), b±d¼ przeliczane jest po³o¿enie kamery wzglêdem po³o¿enia bohatera.
 \subsection{Interfejs u¿ytkownika}
 Jest to czê¶æ, która pozwala na komunikacje pomiêdzy u¿ytkownikiem a gr±. W obecnej chwili w projekcie sprowadza siê to do wyskakuj±cych okienek przy zakoñczeniu gry gdzie zostaje podana odpowiednia informacja u¿ytkownikowi.
 \subsection{World Manager}
-%Marcin:eee :)
+Zarz±dca ¶wiata stanowi standaryzacjê komunikacji miêdzymodu³owej w projekcie. 
+
+Ogre oraz Bullet nie rozumiej± siê wzajemnie, dlatego pomiêdzy nimi znajduje siê WM komunikuj±cy Ogre'a o przesuniêciach obiektów maj±cych miejsce w Bullecie. Analogiczn± funkcjê pe³ni wzglêdem zdarzeñ pochodz±cych z wej¶cia oraz silnika fizyki -- informuje go o próbie przy³o¿enia si³y do obiektu.
+
+Ponadto za pomoc± mechnizmu dostêpu do kamery, mened¿era sceny i okna wy¶wietlania wraz z kolejk± obiektów dynamicznych -- umo¿liwia ich wyabstrahowanie oraz sterowanie za pomoc± dodatkowych modu³ów (np. sztucznej inteligencji).
 \subsection{Sztuczna inteligencja}
 %Pawe³: pole do popisu:)
 \chapter{Dokumentacja u¿ytkowa}
@@ -143,7 +163,7 @@ Elementy, które Autorzy planuj± kiedy¶ dodaæ lub ulepszyæ to:
 \begin{itemize}
  \item Piotr Czubak: parser, silnik fizyczny, interfejs u¿ytkownika, pisanie dokumentacji.
  \item Marcin Kanclerz: silnik graficzny, interfejs wej¶cia, world manager, integracja poszczególnych komponentów, pisanie dokumentacji.
- \item Pawe³ Koz³owski: silnik graficzny, sztuczna inteligencja, pisanie dokumentacji.
+ \item Pawe³ Koz³owski: silnik graficzny, interfejs wej¶cia, sztuczna inteligencja, pisanie dokumentacji.
  \item Filip Mazowiecki: parser, silnik graficzny, interfejs u¿ytkownika, pisanie dokumentacji.
  %ew. do uzupe³nienia
 \end{itemize}
