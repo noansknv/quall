@@ -71,7 +71,7 @@ Projekt \emph{Quall} stanowi realizacjê powy¿szych za³o¿eñ. Umo¿liwi³ on Autorom
 Celem projektu by³o stworzenie trójwymiarowej gry z silnikiem fizycznym. Gracz wciela siê w postaæ kulki, któr± musi przej¶æ labirynt w jakim siê znajduje. Podczas rozgrywki graczowi przeszkadzaj± inne kulki, któr± go goni±.
 
 \chapter{Podobne projekty}
-Celem projektu Quall nie by³o stworzenie czego¶ nowego, tylko nauczenie siê ogólnych technik tworzenia gier komputerowych, które mo¿naby w przysz³o¶ci wykorzystaæ. Dlatego jest mnóstwo podobnych projektów zarówno komercyjnych jak i niekomercyjnych dostepnych w sieci lub w zwyk³ych sklepach. Projekt Quall zawiera w sobie najbardziej popularne elementy innych gier, które pojawiaj± sie bardzo czêsto i ³±czy je w sobie. Trójwymiarowo¶æ, labirynt, silnik fizyczny nie s± niczym nowym, jednak nauczenie siê u¿ywania ich tak jak w innych grach daje podstawy do napisania czego¶ ciekawego w przysz³o¶ci.
+Celem projektu Quall nie by³o stworzenie czego¶ nowego, tylko nauczenie siê ogólnych technik tworzenia gier komputerowych, które mo¿naby w przysz³o¶ci wykorzystaæ. Dlatego jest mnóstwo podobnych projektów zarówno komercyjnych jak i niekomercyjnych dostepnych w sieci lub w zwyk³ych sklepach. Projekt Quall zawiera w sobie najbardziej popularne elementy innych gier, które pojawiaj± siê bardzo czêsto i ³±czy je w sobie. Trójwymiarowo¶æ, labirynt, silnik fizyczny nie s± niczym nowym, jednak nauczenie siê u¿ywania ich tak jak w innych grach daje podstawy do napisania czego¶ ciekawego w przysz³o¶ci.
 
 Przyk³adowe gry, z których Autorzy czerpali inspiracjê:
 \begin{itemize}
@@ -110,9 +110,9 @@ Podstawowym celem podzia³ów w projekcie by³o umo¿liwienie w stosunkowo prosty sp
 Projekt Parser dzia³a w ten sposób, ¿e wczytuje ca³y plik, w którym znajduje siê opisana plansza, a nastêpnie rozpoznaj±c odpowiednie parametry dotycz±ce odpowiednich obiektów przerabia je na klasy i atrybuty. Wynikiem koñcowym jest obiekt klasy World, który zawiera miêdzy innymi stos wszystkich ¶cian i punktów startowych wraz z ich danymi. Dane te zawieraj± nazwy materia³ów jakie maj± byæ na³o¿one na poszczególne obiekty, oraz nazwy plików gdzie jest opisana ich struktura geometryczna.
 
 \subsection{Silnik graficzny}
-%Pawe³: tu czê¶æ lepiej ty opisz
+Ca³y proces rysowania i obserwowania sceny jest mo¿liwy w³a¶nie dziêki silnikowi graficznemu. W ¶wiecie gry jest utworzonych wiele obiektów, czê¶æ z nich jest statyczna (pod³oga, ¶ciany), a czê¶æ dynamiczna (g³ówny bohater i si³y wroga). Ka¿dy obiekt ma swój wêze³, który go reprezentuje w mened¿erze sceny silnika Ogre. Wêz³y po³±czone s± w pewnego rodzaju strukturê drzewiast±, której korzeniem jest g³ówny wêze³ mened¿era sceny, nazywa siê on Root. W g³ównej pêtli programu silnik graficzny zajmuje siê rysowaniem ka¿dej kolejnej klatki, a tak¿e przesuwaniem obiektów dynamicznych i kamery zgodnie z odebranymi informacjami z systemu wej¶cia/wyj¶cia oraz silnika fizycznego.
 
-W Ogrze nak³adanie tekstur odbywa siê za pomoc± skryptów, które nazywa siê materia³ami. S± to pliki napisane w strukturze podobnej do klas C++. Opisuj± one jakie tekstury i w jaki sposób maj± byæ na³o¿one na dany obiekt geometryczny. Mo¿na podawaæ w jakis sposób ma byæ u¿yta podana tekstura - np. czy chodzi tylko o pewien okr±g z niej do na³o¿enia tego na kulê, czy np. jest to jedna z sze¶ciu ¶cian, które bêd± na prostopad³o¶cianie. Poza tym mo¿na je nak³adaæ w kilku krokach, uzyskuj±c w ten sposób np. pod³oge która jest czêsciowo trawiasta a czêsciowa ziemnista.
+Oprócz tego silnik graficzny zajmuje siê obs³ug± o¶wietlenia i teksturowania. W Ogrze nak³adanie tekstur odbywa siê za pomoc± skryptów, które nazywa siê materia³ami. S± to pliki napisane w strukturze podobnej do klas C++. Opisuj± one jakie tekstury i w jaki sposób maj± byæ na³o¿one na dany obiekt geometryczny. Mo¿na podawaæ w jakis sposób ma byæ u¿yta podana tekstura - np. czy chodzi tylko o pewien okr±g z niej do na³o¿enia tego na kulê, czy np. jest to jedna z sze¶ciu ¶cian, które bêd± na prostopad³o¶cianie. Poza tym mo¿na je nak³adaæ w kilku krokach, uzyskuj±c w ten sposób np. pod³oge która jest czêsciowo trawiasta a czêsciowa ziemnista.
 \subsection{Silnik fizyczny}
 %Czubek: enjoy ;)
 \subsection{Interfejs wej¶cia}
@@ -132,7 +132,7 @@ Ogre oraz Bullet nie rozumiej± siê wzajemnie, dlatego pomiêdzy nimi znajduje siê
 
 Ponadto za pomoc± mechnizmu dostêpu do kamery, mened¿era sceny i okna wy¶wietlania wraz z kolejk± obiektów dynamicznych -- umo¿liwia ich wyabstrahowanie oraz sterowanie za pomoc± dodatkowych modu³ów (np. sztucznej inteligencji).
 \subsection{Sztuczna inteligencja}
-%Pawe³: pole do popisu:)
+Sprawienie, aby g³ówny bohater by³ ¶cigany przez si³y wroga w postaci watahy innych kulek, by³o mo¿liwe dziêki odpowiedniemu oprogramowaniu funkcji niezbêdnych do tego, aby danemu wrogowi wskazaæ kierunek, w którym powinien siê ruszaæ w najbli¿szym czasie. Wiedza, w któr± stronê dana jednostka si³ wroga powinna zmierzaæ, zostaje przekazana silnikowi fizycznemu, aby ten móg³ zadzia³aæ odpowiedni± si³± na dany obiekt.
 \chapter{Dokumentacja u¿ytkowa}
 
 \section{Uruchomienie gry}
@@ -153,7 +153,7 @@ Projekt w chwili obecnej jest gr±, która polega na przej¶ciu labirytu unikaj±c p
 Elementy, które Autorzy planuj± kiedy¶ dodaæ lub ulepszyæ to:
 \begin{itemize}
  \item Mo¿liwo¶æ strzelania do innych kulek, oraz wprowadzenie punktów ¿ycia. Zanika³o by ono od wybranych zdarzeñ - np. oberwanie pociskiem, zderzenie z inn± kulk±, upadek z wysoko¶ci. Zdecydowanie poprawi³o by to grywalno¶æ gry Quall.
- \item Urozmaicenie planszy oraz samej postaci kulki. Plansze mog³yby mieæ kilka poziomów, oraz ró¿nego rozmiaru wej¶cia, do których nie ka¿dy by mia³ dostêp. Kulki mog³yby byæ ró¿nych rozmiarów i je zmieniaæ w zale¿no¶ci od róznych parametrów - np. czasu lubi ilo¶ci ¿ycia.
+ \item Urozmaicenie planszy oraz samej postaci kulki. Plansze mog³yby mieæ kilka poziomów, oraz ró¿nego rozmiaru wej¶cia, do których nie ka¿dy by mia³ dostêp. Kulki mog³yby byæ ró¿nych rozmiarów i je zmieniaæ w zale¿no¶ci od róznych parametrów - np. czasu lub ilo¶ci ¿ycia.
  \item Tryb wielu graczy. Wi±za³oby sie to z dodaniem strzelania lub przynajmniej punktów ¿ycia, ¿eby gracze mogli wzajemnie ze soba walczyæ. Wi±za³oby siê to ze stworzeniem jakiego¶ dodatkowego projektu, który by umo¿liwia³ dzia³anie serwera gdzie by³yby synchronizowane zdarzenia na planszy.
  \item Kreator plansz. Trzymanie planszy w pliku xml jest wygodne, jednak tworzenie od pocz±tku za ka¿dy planszy w samym pliku xml jest niepraktyczne i czasoch³onne. Dlatego przydatny by³by jaki¶ graficzny kreator gdzie mo¿naby w prosty i intuicyjny narysowaæ plansze i zaznaczyæ odpowiednie rzeczy na niej.
 \end{itemize}
