@@ -26,6 +26,25 @@
 <meshy x="185.0" y="40.0" z="8.0" mesh="cloud.mesh" material="Quall/PinkCloud"/>
 <meshy x="210.0" y="20.0" z="10.0" mesh="cloud.mesh" material="Quall/Clouds"/>
 <meshy x="190.0" y="10.0" z="10.0" mesh="cloud.mesh" material="Quall/WhiteCloud"/>
+<meshy x="190.0" y = "100.0" z ="10.0" mesh="cloud.mesh" material="Quall/WhiteCloud"/>
+<meshy x="190.0" y = "110.0" z ="8.0" mesh="cloud.mesh" material="Quall/Clouds"/>
+<meshy x="230.0" y = "40.0" z ="14.0" mesh="cloud.mesh" material="Quall/Clouds"/>
+<meshy x="235.0" y = "45.0" z ="5.0" mesh="cloud.mesh" material="Quall/Clouds"/>
+<meshy x="270.0" y = "150.0" z ="8.0" mesh="cloud.mesh" material="Quall/PinkCloud"/>
+<meshy x="265.0" y = "145.0" z ="5.0" mesh="cloud.mesh" material="Quall/Clouds"/>
+<meshy x="150.0" y = "170.0" z ="9.0" mesh="cloud.mesh" material="Quall/Clouds"/>
+<meshy x="145.0" y = "165.0" z ="5.0" mesh="cloud.mesh" material="Quall/WhiteCloud"/>
+<meshy x="270.0" y = "310.0" z ="5.0" mesh="cloud.mesh" material="Quall/Clouds"/>
+<meshy x="265.0" y = "305.0" z ="11.0" mesh="cloud.mesh" material="Quall/Clouds"/>
+<meshy x="30.0" y = "50.0" z ="5.0" mesh="cloud.mesh" material="Quall/Clouds"/>
+<meshy x="25.0" y = "45.0" z ="15.0" mesh="cloud.mesh" material="Quall/WhiteCloud"/>
+<meshy x="110.0" y = "180.0" z ="5.0" mesh="cloud.mesh" material="Quall/Clouds"/>
+<meshy x="105.0" y = "175.0" z ="12.0" mesh="cloud.mesh" material="Quall/PinkCloud"/>
+<meshy x="230.0" y = "260.0" z ="5.0" mesh="cloud.mesh" material="Quall/Clouds"/>
+<meshy x="225.0" y = "255.0" z ="4.0" mesh="cloud.mesh" material="Quall/Clouds"/>
+<meshy x="150.0" y = "330.0" z ="8.0" mesh="cloud.mesh" material="Quall/WhiteCloud"/>
+<meshy x="150.0" y = "325.0" z ="5.0" mesh="cloud.mesh" material="Quall/Clouds"/>
+<meshy x="150.0" y = "320.0" z ="10.0" mesh="cloud.mesh" material="Quall/PinkCloud"/>
 
   <!-- promien kulki - 5, srodek kulki sie znajduje w odleglosci 5 od scian.-->
   <!-- cube to 2 wierzcholki: front-bottom-left back-top-right-->
