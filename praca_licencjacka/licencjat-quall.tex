@@ -114,7 +114,9 @@ Ca³y proces rysowania i obserwowania sceny jest mo¿liwy w³a¶nie dziêki silnikowi
 
 Oprócz tego silnik graficzny zajmuje siê obs³ug± o¶wietlenia i teksturowania. W Ogrze nak³adanie tekstur odbywa siê za pomoc± skryptów, które nazywa siê materia³ami. S± to pliki napisane w strukturze podobnej do klas C++. Opisuj± one jakie tekstury i w jaki sposób maj± byæ na³o¿one na dany obiekt geometryczny. Mo¿na podawaæ w jakis sposób ma byæ u¿yta podana tekstura - np. czy chodzi tylko o pewien okr±g z niej do na³o¿enia tego na kulê, czy np. jest to jedna z sze¶ciu ¶cian, które bêd± na prostopad³o¶cianie. Poza tym mo¿na je nak³adaæ w kilku krokach, uzyskuj±c w ten sposób np. pod³oge która jest czêsciowo trawiasta a czêsciowa ziemnista.
 \subsection{Silnik fizyczny}
-%Czubek: enjoy ;)
+Silnik fizyczny odpowiada za wykrywanie kolizji zachodz±cych w ¶wiecie gry. Ka¿dy obiekt, z którym mo¿liwa jest kolizja (a wiêc pod³oga, ¶ciany i kulki) reprezentowany jest jako pewien kszta³t i pamiêtany przez Bulleta. Silnik co klatkê wylicza po³o¿enie wszystkich takich obiektów bior±c pod uwagê ich kszta³t i masê, a nastêpnie przekazuje te informacje do Ogre'a. W momencie kolizji Bullet automatycznie wylicza nowe po³o¿enia kulek, pod warunkiem, ¿e nie jest to zderzenie g³ównej kulki z wrog± (w takim przypadku nastêpuje zakoñczenie gry).
+
+Ponadto, silnik fizyczny obs³uguje tak¿e poruszanie siê wszystkich kulek. G³ównej kulce zostaje nadana ustalona prêdko¶æ po otrzymaniu informacji z systemu wej¶cia/wyj¶cia. Kierunek i zwrot prêdko¶ci zale¿y od aktualnego ustawienia kamery oraz od klawisza, który zosta³ wci¶niêty. Kulki wroga natomiast, poruszaj± siê z tak± sam± prêdkoœci± jak g³ówny bohater, w kierunku ustalonym przez modu³ sztucznej inteligencji.
 \subsection{Interfejs wej¶cia}
 \emph{Quall} obs³ugiwany jest w szczególno¶ci za pomoc±:
 \begin{itemize}
