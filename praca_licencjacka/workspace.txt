@@ -1,0 +1,28 @@
+Opis konfiguracji workspace'a:
+
+1. Œci¹gamy ogreSDK, instalujemy na komputerze.
+https://sourceforge.net/projects/ogre/files/ogre/1.6.5/OgreSDKSetup1.6.5_VC90.exe/download
+2. Œci¹gamy boost'a (wersja 1.41.0), rozpakowywujemy go na C:\ (powinien stworzyæ siê katalog boost_1_41_0) 
+http://sourceforge.net/projects/boost/files/boost/1.41.0/boost_1_41_0.zip/download
+3. Œci¹gamy bullet'a (wersja 2.75), rozpakowywujemy go na C:\ (powinien stworzyæ siê katalog bullet-2.75), wchodzimy do C:\bullet-2.75\msvc\8\ i otwieramy plik "wksbullet.sln" w Visual Studio 2008, odpalamy build'a.
+http://bullet.googlecode.com/files/bullet-2.75.zip
+4. Przegrywamy kod Ÿród³owy, mamy tam 2 katalogi: Quall i resource, kopiujemy resource do C:\ 
+5. Otwieramy Quall.sln w Visual Studio 2008, w Project/Quall properties ustawiamy po kolei: 
+
+Debugging : Command = $(OutDir)\$(ProjectName).exe
+
+Debugging : Working Directory = $(OutDir)
+
+Debugging : Environment = PATH=%PATH%;%OGRE_HOME%\bin\debug
+
+C/C++ : General : Additional Include Directories = ..\Parser;..\include;$(OGRE_HOME)\include;$(OGRE_HOME)\samples\include;c:\bullet-2.75\src;c:\boost_1_41_0\
+
+C/C++ : Preprocessor : Preprocessor Definitions += STLP_DEBUG
+
+C/C++ : Code Generation : Use runtime library = Multithreaded Debug DLL
+
+Linker : General : Output File = $(OutDir)\$(ProjectName).exe
+
+Linker : General : Additional Library Directories = $(OGRE_HOME)\lib;C:\bullet-2.75\out\debug8\libs
+
+Linker : Input : Additional Dependencies += OgreMain_d.lib OIS_d.lib CEGUIBase_d.lib OgreGUIRenderer_d.lib libbulletcollision_d.lib libbulletdynamics_d.lib libbulletmath_d.lib libbulletopenglsupport_d.lib
