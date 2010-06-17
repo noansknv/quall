@@ -113,6 +113,9 @@ Oprócz tego silnik graficzny zajmuje siê obs³ug± o¶wietlenia i teksturowania. W 
 Silnik fizyczny odpowiada za wykrywanie kolizji zachodz±cych w ¶wiecie gry. Ka¿dy obiekt, z którym mo¿liwa jest kolizja (a wiêc pod³oga, ¶ciany i kulki) reprezentowany jest jako pewien kszta³t i pamiêtany przez Bulleta. Silnik co klatkê wylicza po³o¿enie wszystkich takich obiektów bior±c pod uwagê ich kszta³t i masê, a nastêpnie przekazuje te informacje do Ogre'a. W momencie kolizji Bullet automatycznie wylicza nowe po³o¿enia kulek, pod warunkiem, ¿e nie jest to zderzenie g³ównej kulki z wrog± (w takim przypadku nastêpuje zakoñczenie gry).
 
 Ponadto, silnik fizyczny obs³uguje tak¿e poruszanie siê wszystkich kulek. G³ównej kulce zostaje nadana ustalona prêdko¶æ po otrzymaniu informacji z systemu wej¶cia/wyj¶cia. Kierunek i zwrot prêdko¶ci zale¿y od aktualnego ustawienia kamery oraz od klawisza, który zosta³ wci¶niêty. Kulki wroga natomiast, poruszaj± siê z tak± sam± prêdko¶ci± jak g³ówny bohater, w kierunku ustalonym przez modu³ sztucznej inteligencji.
+
+W trakcie projektu wysz³y pewne problemy zwi±zane z dzia³aniem Bulleta. Kulka przy naskakiwaniu na ¶ciane wylatywa³a wysoko w powietrze. Problem zosta³ rozwi±zany przez zablokowanie dzia³añ kulki przy odbijaniu sie od ¶ciany. Innym problemem jaki powsta³ by³o ustawienie ograniczeñ na poruszanie sie kamer±, ¿eby nie da³o siê widzieæ planszy przez ¶cianê. Problemu nie uda³o siê niestety rozwi±zaæ poniewa¿ ciê¿ko by³o zsynchronizowaæ dzia³anie Bulleta z dzia³aniem Ogre'a.
+
 \subsection{Interfejs wej¶cia}
 \emph{Quall} obs³ugiwany jest w szczególno¶ci za pomoc±:
 \begin{itemize}
@@ -185,7 +188,8 @@ Elementy, które Autorzy planuj± kiedy¶ dodaæ lub ulepszyæ to:
  \item wizja.pdf - wizja projektu.
  \item sad.pdf - opis architektury projektu.
  \item licencjat-quall.pdf ten dokument.
- \item workspace.txt - opis konfiguracji ¶rodowiska.
+ \item workspace.doc - opis konfiguracji ¶rodowiska.
+ \item prezentacja.ppt - prezentacja ze stycznia.
 \end{itemize}
 \textbf{Folder release} - wersja produkcyjna gry z plikiem quall.exe w podkatalogu Quall.
 \begin{thebibliography}{99}
