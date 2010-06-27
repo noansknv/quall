@@ -1,0 +1,56 @@
+Slajdy:
+
+Technologie
+* Silnik graficzny
+* Silnik fizyczny
+* Wejscie
+* Deus Ex Machina
+
+---
+
+Silnik graficzny - Ogre 3D
+* najpopularniejszy open-source
+* uzywany m.in. w filmach czy w grach
+* implementacje na wiele platform
+
+Ogre 3D
+* definiujemy polozenie kamery i jej wlasnosci
+* opisujemy obiekty w swiecie 3D
+  - ksztalt (proste, lub skomplikowane meshe)
+  - animacje
+  - tekstury
+* opisujemy sam swiat
+  - podloze
+  - typ nieba
+* silnik sam zajmuje sie poprawnym wyswietlanim opisanego swiata
+
+Silnik fizyczny - BulletPhysics
+* 3ci najpopularniejszy w ogole
+* uzywany w filmach i grach
+* implementacje na wiele platform
+* oferuje fizyke ciala stalego jak i miekkiego (? TODO: tak to sie nazywa?)
+
+BulletPhysics
+* opisujemy uproszczony swiat w postaci bulletowych typow
+  - kul/elipsoid, prostopadloscianow
+* opisujemy relacje miedzy nimi
+  - roznego typu zawiasy
+  - algorytmy przetwarzania zderzen
+* silnik sam przelicza zderzenia i odpowiednio reaguje
+
+Wejscie - OIS
+* standard doskonale wspolgrajacy z pozostalymi technologiami
+* prosty interfejs 
+* oparty na zdarzeniach i callbackach/listenerach
+
+
+<grafika schemat-gry>
+
+Deus Ex Machina
+* cos to wszystko musi spiac - World Manager
+* udostepnia wyzsze warstwy abstrakcji systemu
+  - przetwarza odpowiednio IO
+  - udostepnia np. OpenGL
+* odpowiada za wysokopoziomowa logike gry
+  - przetwarza callbacki silnika fizycznego
+  - wstrzykuje do niego zdarzenia
